@@ -1,0 +1,19 @@
+name: stag
+version: 0.1.0
+
+authors:
+  - Ryan Scott Lewis <ryanscottlewis@gmail.com>
+
+targets:
+  stag:
+    main: src/stag.cr
+
+dependencies:
+  sqlite3:
+    github: crystal-lang/crystal-sqlite3
+  crecto:
+    github: Crecto/crecto
+
+crystal: 0.32.1
+
+license: MIT
