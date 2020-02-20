@@ -9,7 +9,6 @@ class Stag::Operation::Filesystem::CreateLink < Stag::Operation::Filesystem::Bas
 
   command { "ln -s '%s' '%s'" % [@source, @destination] }
 
-  # TODO: Use Colorize stdlib?
   report { "\e[35mLINK:\e[0m %s \e[95m→\e[0m \e[35m%s\e[0m" % [@source, @destination] }
 
 end
