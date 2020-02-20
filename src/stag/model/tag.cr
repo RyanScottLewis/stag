@@ -10,7 +10,8 @@ class Stag::Model::Tag < Crecto::Model
   has_many :unions,  Union
   has_many :targets, Target, through: :unions
 
-  has_one :parent, Tag, foreign_key: :parent_id
+  belongs_to :parent, Tag, foreign_key: :parent_id
+  has_many :children, Tag, foreign_key: :parent_id
 
   validate_required :name
   validate_required :path
