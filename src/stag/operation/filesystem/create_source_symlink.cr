@@ -1,9 +1,11 @@
 class Stag::Operation::Filesystem::CreateSourceSymlink < Stag::Operation::Filesystem::Base
 
   @source      : Model::Source
+  @tag         : Model::Tag
   @destination : String
 
-  def initialize(@options, @source, @destination)
+  def initialize(@options, @source, @tag)
+    @destination = File.join(@options.root, @tag.path!, @source.name!)
   end
 
   command { "ln -s '%s' '%s'" % [@source.path, @destination] }

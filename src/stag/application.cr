@@ -17,7 +17,9 @@ class Stag::Application
     Operation::ProcessOptions.call(@options)
     Operation::SetupDatabase.call(@options)
 
-    #omg = Operation::GenerateFilesystemOperations.call
+    omg = Operation::GenerateFilesystemOperations.call(@options)
+
+    pp omg
 
     #pp omg.first
     #pp omg.first.children.first
