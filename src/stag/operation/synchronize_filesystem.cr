@@ -1,4 +1,4 @@
-class Stag::Operation::GenerateFilesystemOperations < Stag::Operation::Base
+class Stag::Operation::SynchronizeFilesystem < Stag::Operation::Base
 
   @options    : Options
   @tags       = [] of Model::Tag
@@ -10,6 +10,7 @@ class Stag::Operation::GenerateFilesystemOperations < Stag::Operation::Base
   def call
     retrieve_tags
     generate_operations
+    call_operations
   end
 
   protected def retrieve_tags
@@ -23,6 +24,10 @@ class Stag::Operation::GenerateFilesystemOperations < Stag::Operation::Base
     end
 
     @operations
+  end
+
+  protected def call_operations
+    @operations.each(&.call)
   end
 
   protected def generate_tag_operation(tag : Model::Tag)

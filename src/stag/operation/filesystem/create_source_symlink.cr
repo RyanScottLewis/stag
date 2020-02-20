@@ -8,9 +8,13 @@ class Stag::Operation::Filesystem::CreateSourceSymlink < Stag::Operation::Filesy
     @destination = File.join(@options.root, @tag.path!, @source.name!)
   end
 
-  command { "ln -s '%s' '%s'" % [@source.path, @destination] }
+  def command
+    "ln -s '%s' '%s'" % [@source.path, @destination]
+  end
 
-  report { "\e[35mLINK:\e[0m %s \e[95m→\e[0m \e[35m%s\e[0m" % [@source.path, @destination] }
+  def report
+    "\e[35mLINK:\e[0m %s \e[95m→\e[0m \e[35m%s\e[0m" % [@source.path, @destination]
+  end
 
 end
 

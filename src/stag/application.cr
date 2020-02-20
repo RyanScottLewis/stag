@@ -11,20 +11,13 @@ class Stag::Application
 
   def call
     # TODO: DEBUG
-    Crecto::DbLogger.set_handler(STDOUT)
+    #Crecto::DbLogger.set_handler(STDOUT)
 
     Operation::ParseOptions.call(@arguments, @options, @option_parser)
     Operation::ProcessOptions.call(@options)
     Operation::SetupDatabase.call(@options)
 
-    omg = Operation::GenerateFilesystemOperations.call(@options)
-
-    pp omg
-
-    #pp omg.first
-    #pp omg.first.children.first
-    #pp omg.first.children.first.parent
-
+    Operation::SynchronizeFilesystem.call(@options)
   end
 
 end

@@ -7,9 +7,13 @@ class Stag::Operation::Filesystem::CreateTagDirectory < Stag::Operation::Filesys
     @destination = File.join(@options.root, @tag.path!)
   end
 
-  command { "mkdir -p '%s'" % @destination }
+  def command
+    "mkdir -p '%s'" % @destination
+  end
 
-  report { "\e[36mDIR:\e[0m  %s" % @destination }
+  def report
+    "\e[36mDIR:\e[0m  %s" % @destination
+  end
 
 end
 

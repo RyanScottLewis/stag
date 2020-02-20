@@ -1,17 +1,7 @@
 abstract class Stag::Operation::Filesystem::Base < Stag::Operation::Base
 
-  macro def_block_method(*names)
-    {% for name in names %}
-      macro {{name}}(&block)
-        def {{name}}
-          \{{block.body}}
-        end
-      end
-    {% end %}
-  end
-
-  def_block_method command
-  def_block_method report
+  abstract def command
+  abstract def report
 
   @options : Options
 
@@ -25,7 +15,7 @@ abstract class Stag::Operation::Filesystem::Base < Stag::Operation::Base
     message += " \e[33m[DRY]\e[90m" if @options.dry
 
     puts message
-    #system command unless @options.dry
+    system command unless @options.dry
   end
 
 end
