@@ -1,5 +1,6 @@
 /docs/
 /lib/
 /bin/
+/build/
 /.shards/
 *.dwarf
