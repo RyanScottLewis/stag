@@ -1,4 +1,4 @@
-class Stag::Operation::Filesystem::CreateTarget < Stag::Operation::Filesystem::Base
+class Stag::Operation::Filesystem::CreateTargetSymlink < Stag::Operation::Filesystem::Base
 
   @target      : Model::Target
   @source      : String

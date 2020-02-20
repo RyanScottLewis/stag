@@ -1,4 +1,4 @@
-class Stag::Operation::Filesystem::CreateDirectory < Stag::Operation::Filesystem::Base
+class Stag::Operation::Filesystem::CreateTagDirectory < Stag::Operation::Filesystem::Base
 
   @tag         : Model::Tag
   @destination : String
