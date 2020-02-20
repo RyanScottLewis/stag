@@ -17,10 +17,10 @@ class Stag::Application
     #pp @options
     #pp @arguments
 
-    link = Repository.get!(Model::Link, 1, Query.preload([:unions, :tags]))
-
-
-    Operation::Filesystem::CreateLink.call(@options, link, "/foo/bar/Old", "/bar/baz/New")
+    #target.tags.each do |tag|
+      #Operation::Filesystem::CreateDirectory.call(@options, tag)
+    #end
+    #Operation::Filesystem::CreateTarget.call(@options, target, "/foo/bar/Old", "/bar/baz/New")
   end
 
 end

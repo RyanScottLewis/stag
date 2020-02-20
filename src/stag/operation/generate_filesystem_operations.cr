@@ -9,7 +9,7 @@ class Stag::Operation::GenerateFilesystemOperations < Stag::Operation::Base
   end
 
   protected def retrieve_tags
-    @tags = Repository.all(Model::Tag, Query.where(level: 0).preload([:unions, :links]))
+    @tags = Repository.all(Model::Tag, Query.where(level: 0).preload([:unions, :targets]))
   end
 
   protected def genreate_operations_for(node)

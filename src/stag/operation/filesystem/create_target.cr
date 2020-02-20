@@ -1,10 +1,10 @@
-class Stag::Operation::Filesystem::CreateLink < Stag::Operation::Filesystem::Base
+class Stag::Operation::Filesystem::CreateTarget < Stag::Operation::Filesystem::Base
 
-  @link        : Model::Link
+  @target      : Model::Target
   @source      : String
   @destination : String
 
-  def initialize(@options, @link, @source, @destination)
+  def initialize(@options, @target, @source, @destination)
   end
 
   command { "ln -s '%s' '%s'" % [@source, @destination] }

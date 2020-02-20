@@ -1,14 +1,14 @@
 class Stag::Model::Tag < Crecto::Model
 
   schema "tags" do
-    field :name, String
-    field :path, String # Tag hierarchy path # TODO: Index
-    field :level, Int32
+    field :name,      String
+    field :path,      String # Tag hierarchy path # TODO: Index
+    field :level,     Int32
     field :parent_id, PkeyValue
   end
 
-  has_many :unions, Union
-  has_many :links, Link, through: :unions
+  has_many :unions,  Union
+  has_many :targets, Target, through: :unions
 
   has_one :parent, Tag, foreign_key: :parent_id
 
