@@ -8,7 +8,7 @@ class Stag::Model::Tag < Crecto::Model
   end
 
   has_many :unions,  Union
-  has_many :targets, Target, through: :unions
+  has_many :sources, Source, through: :unions
 
   belongs_to :parent, Tag, foreign_key: :parent_id
   has_many :children, Tag, foreign_key: :parent_id

@@ -1,6 +1,6 @@
-class Stag::Model::Target < Crecto::Model
+class Stag::Model::Source < Crecto::Model
 
-  schema "targets" do
+  schema "sources" do
     field :name, String
     field :path, String # File system path # TODO: Index
   end

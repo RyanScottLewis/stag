@@ -10,17 +10,19 @@ class Stag::Application
   end
 
   def call
+    # TODO: DEBUG
+    Crecto::DbLogger.set_handler(STDOUT)
+
     Operation::ParseOptions.call(@arguments, @options, @option_parser)
     Operation::ProcessOptions.call(@options)
     Operation::SetupDatabase.call(@options)
 
-    #pp @options
-    #pp @arguments
+    #omg = Operation::GenerateFilesystemOperations.call
 
-    #target.tags.each do |tag|
-      #Operation::Filesystem::CreateDirectory.call(@options, tag)
-    #end
-    #Operation::Filesystem::CreateTarget.call(@options, target, "/foo/bar/Old", "/bar/baz/New")
+    #pp omg.first
+    #pp omg.first.children.first
+    #pp omg.first.children.first.parent
+
   end
 
 end

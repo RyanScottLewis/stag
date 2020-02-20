@@ -9,7 +9,7 @@ class Stag::Operation::SetupDatabase < Stag::Operation::Base
     setup_database_path
 
     open_database do |db|
-      create_targets_table(db)
+      create_sources_table(db)
       create_tags_table(db)
       create_unions_table(db)
     end
@@ -28,9 +28,9 @@ class Stag::Operation::SetupDatabase < Stag::Operation::Base
     end
   end
 
-  protected def create_targets_table(db)
+  protected def create_sources_table(db)
     db.exec <<-SQL
-      CREATE TABLE IF NOT EXISTS targets (
+      CREATE TABLE IF NOT EXISTS sources (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
         path TEXT NOT NULL
@@ -54,7 +54,7 @@ class Stag::Operation::SetupDatabase < Stag::Operation::Base
     db.exec <<-SQL
       CREATE TABLE IF NOT EXISTS unions (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        target_id INTEGER NOT NULL,
+        source_id INTEGER NOT NULL,
         tag_id INTEGER NOT NULL
       );
     SQL
