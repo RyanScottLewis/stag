@@ -44,7 +44,8 @@ class Stag::Operation::SetupDatabase < Stag::Operation::Base
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
         path TEXT NOT NULL,
-        level INTEGER NOT NULL
+        level INTEGER NOT NULL,
+        parent_id INTEGER
       );
     SQL
   end
