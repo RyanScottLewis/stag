@@ -2,7 +2,7 @@ class Stag::Operation::SynchronizeFilesystem < Stag::Operation::Base
 
   @options    : Options
   @tags       = [] of Model::Tag
-  @operations = [] of Operation::Filesystem::Base
+  @operations = [] of Operation::FilesystemCommand::Base
 
   def initialize(@options)
   end
@@ -31,7 +31,7 @@ class Stag::Operation::SynchronizeFilesystem < Stag::Operation::Base
   end
 
   protected def generate_tag_operation(tag : Model::Tag)
-    @operations << Operation::Filesystem::CreateTagDirectory.new(@options, tag)
+    @operations << Operation::FilesystemCommand::CreateTagDirectory.new(@options, tag)
 
     # TODO: Figure out preloading because this defeats the purpose of associations...
     query = Query.join(:unions).where("unions.tag_id = ?", tag.id)
@@ -46,7 +46,7 @@ class Stag::Operation::SynchronizeFilesystem < Stag::Operation::Base
   end
 
   protected def generate_source_operation(source : Model::Source, tag : Model::Tag)
-    @operations << Operation::Filesystem::CreateSourceSymlink.new(@options, source, tag)
+    @operations << Operation::FilesystemCommand::CreateSourceSymlink.new(@options, source, tag)
   end
 
 end

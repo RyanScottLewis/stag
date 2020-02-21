@@ -1,4 +1,4 @@
-class Stag::Operation::Filesystem::CreateSourceSymlink < Stag::Operation::Filesystem::Base
+class Stag::Operation::FilesystemCommand::CreateSourceSymlink < Stag::Operation::Filesystem::Base
 
   @source      : Model::Source
   @tag         : Model::Tag
