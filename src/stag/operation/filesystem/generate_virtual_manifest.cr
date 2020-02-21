@@ -50,7 +50,7 @@ class Stag::Operation::Filesystem::GenerateVirtualManifest < Stag::Operation::Ba
   end
 
   protected def create_symlink_entry(tag, source, memo)
-    memo << { type: File::Type::Symlink, path: File.join(@options.root, tag.path!, source.path!) }
+    memo << { type: File::Type::Symlink, path: File.join(@options.root, tag.path!, source.name!) }
   end
 
 end
