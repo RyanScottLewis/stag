@@ -1,10 +1,11 @@
-class Stag::Operation::Filesystem::RetrieveManifest < Stag::Operation::Base
+class Stag::Operation::Filesystem::GenerateFilesystemManifest < Stag::Operation::Base
 
   @options : Options
 
   def initialize(@options)
   end
 
+  # TODO: Adapters, allow `find PATH -type d -or -type s` as an alternative which is ~3-4x faster
   def call
     retrieve_directories_and_symlinks(@options.root)
   end

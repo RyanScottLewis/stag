@@ -18,7 +18,7 @@ class Stag::Application
     Operation::SetupDatabase.call(@options)
 
     # TODO:
-    manifest = Operation::Filesystem::RetrieveManifest.call(@options)
+    manifest = Operation::Filesystem::GenerateFilesystemManifest.call(@options)
 
     puts
     pp manifest
