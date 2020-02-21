@@ -21,9 +21,7 @@ class Stag::Application
     filesystem_manifest = Operation::Filesystem::GenerateFilesystemManifest.call(@options)
     virtual_manifest    = Operation::Filesystem::GenerateVirtualManifest.call(@options)
     delta               = Operation::Filesystem::RetrieveDelta.call(filesystem_manifest, virtual_manifest)
-
-    pp delta
-    #delta               = Operation::Filesystem::GenerateCommandOperations
+    #commands            = Operation::Filesystem::GenerateCommandOperations.call(delta)
   end
 
 end
