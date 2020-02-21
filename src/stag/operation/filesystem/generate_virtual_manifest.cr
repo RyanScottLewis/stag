@@ -19,7 +19,7 @@ class Stag::Operation::Filesystem::GenerateVirtualManifest < Stag::Operation::Ba
   protected def generate_entries
     @tags.map do |tag|
       generate_tag_entry(tag)
-    end
+    end.flatten
   end
 
   protected def generate_tag_entry(tag : Model::Tag, memo = [] of FilesystemEntry)
