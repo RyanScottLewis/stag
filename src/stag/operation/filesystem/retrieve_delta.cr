@@ -7,5 +7,12 @@ class Stag::Operation::Filesystem::RetrieveDelta < Stag::Operation::Base
   def initialize(@options, @filesystem_manifest, @virtual_manifest)
   end
 
+  def call
+    {
+      deletion: @filesystem_manifest - @virtual_manifest,
+      addition: @virtual_manifest    - @filesystem_manifest
+    }
+  end
+
 end
 
