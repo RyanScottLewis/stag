@@ -2,9 +2,9 @@ module Stag
 
   VERSION = "0.0.1"
 
-  alias Query = Crecto::Repo::Query
-
-  alias Arguments = Array(String)
+  alias Arguments       = Array(String)
+  alias FilesystemEntry = NamedTuple(type: File::Type, path: String)
+  alias Query           = Crecto::Repo::Query
 
 end
 

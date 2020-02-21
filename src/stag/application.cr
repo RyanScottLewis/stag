@@ -18,10 +18,13 @@ class Stag::Application
     Operation::SetupDatabase.call(@options)
 
     # TODO:
-    manifest = Operation::Filesystem::GenerateFilesystemManifest.call(@options)
+    filesystem_manifest = Operation::Filesystem::GenerateFilesystemManifest.call(@options)
+    virtual_manifest    = Operation::Filesystem::GenerateVirtualManifest.call(@options)
 
     puts
-    pp manifest
+    pp filesystem_manifest
+    puts
+    pp virtual_manifest
     puts
     #Operation::RetrieveFilesystemDelta.call(@options, @manifest)
     #Operation::SynchronizeFilesystem.call(@options, @delta)
