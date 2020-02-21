@@ -23,8 +23,14 @@ class Stag::Operation::Filesystem::GenerateFilesystemManifest < Stag::Operation:
       # ~200ms faster than File.directory? and File.symlink? - I suspect they call File.info on each call
       info = File.info(child_path, false) # False is not to follow symlinks
 
-      memo << { type: info.type, path: child_path }       if info.directory? || info.symlink?
-      retrieve_directories_and_symlinks(child_path, memo) if info.directory?
+
+      if info.directory?
+        memo << { path: child_path }
+
+        retrieve_directories_and_symlinks(child_path, memo)
+      elsif info.symlink?
+        memo << { path: child_path, target: File.readlink(child_path) }
+      end
     end
 
     memo
