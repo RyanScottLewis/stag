@@ -5,11 +5,11 @@ class Stag::Operation::Filesystem::GenerateFilesystemManifest < Stag::Operation:
   def initialize(@options)
   end
 
-  # TODO: Adapters, allow `find PATH -type d -or -type s` as an alternative which is ~3-4x faster
   def call
     retrieve_directories_and_symlinks(@options.root)
   end
 
+  # Note: This is about as optimized as I can make this. Went from ~15x slower than `find` to ~3-4x slower
   protected def retrieve_directories_and_symlinks(path, memo=[] of FilesystemEntry)
     # ~50ms faster than Dir.each_child
     children = Dir.children(path)
