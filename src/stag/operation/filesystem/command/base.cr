@@ -1,4 +1,4 @@
-abstract class Stag::Operation::FilesystemCommand::Base < Stag::Operation::Base
+abstract class Stag::Operation::Filesystem::Command::Base < Stag::Operation::Base
 
   abstract def command
   abstract def report

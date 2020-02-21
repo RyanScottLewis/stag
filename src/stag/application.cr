@@ -17,7 +17,16 @@ class Stag::Application
     Operation::ProcessOptions.call(@options)
     Operation::SetupDatabase.call(@options)
 
-    Operation::SynchronizeFilesystem.call(@options)
+    # TODO:
+    manifest = Operation::Filesystem::RetrieveManifest.call(@options)
+
+    puts
+    pp manifest
+    puts
+    #Operation::RetrieveFilesystemDelta.call(@options, @manifest)
+    #Operation::SynchronizeFilesystem.call(@options, @delta)
+
+    #Operation::Filesystem::Synchronize.call(@options)
   end
 
 end
