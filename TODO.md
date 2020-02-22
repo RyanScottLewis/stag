@@ -8,4 +8,7 @@
 * Class description documentation
 * Transactions
   * Command operations should have a `forward` and `back` methods (or something) like a Rails migration
+* Creation/Deletion order of operations
+  * When creating, create directories before links
+  * When deleting, remove links before directories
 
