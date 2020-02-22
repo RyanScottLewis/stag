@@ -25,7 +25,7 @@ $ stag create mcu_project --tags Electronics/Projects,Programming/Projects
 
 $ stag create raspi_project --tags Electronics/Projects,Linux
 
-$ ls -alR ~/.local/share/stag # This is the default stag root path, configurable via CLI arguments and/or config file
+$ ls -alR ~/.local/share/stag/fs # This is the default stag root path, configurable via CLI arguments and/or config file
 ./Electronics:
 total 4
 drwxr-xr-x 2 dg dg 4096 Feb 21 19:36 Projects
