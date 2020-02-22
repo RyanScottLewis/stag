@@ -44,11 +44,8 @@ class Stag::Operation::ParseOptions < Stag::Operation::Base
   end
 
   protected def setup_invalid_option_handler
-    @parser.invalid_option do |flag| # TODO: Just warn
-      STDERR.puts "ERROR: #{flag} is not a valid option."
-      STDERR.puts
-      STDERR.puts @parser
-      exit(1)
+    @parser.invalid_option do |flag|
+      # NOTE: Intentional no-op
     end
   end
 
