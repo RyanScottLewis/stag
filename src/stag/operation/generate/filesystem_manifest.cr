@@ -1,5 +1,5 @@
 # Generate FilesystemEntries based on the actual filesystem.
-class Stag::Operation::Filesystem::GenerateFilesystemManifest < Stag::Operation::Base
+class Stag::Operation::Generate::FilesystemManifest < Stag::Operation::Base
 
   @options : Options
 

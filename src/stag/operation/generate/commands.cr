@@ -1,6 +1,6 @@
 # Generate command operations based on the difference in filesystem and virtual filesystem
 # differences (delta.)
-class Stag::Operation::Filesystem::GenerateCommandOperations < Stag::Operation::Base
+class Stag::Operation::Generate::Commands < Stag::Operation::Base
 
   @options : Options
   @delta   : FilesystemDelta

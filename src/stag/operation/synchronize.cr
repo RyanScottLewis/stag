@@ -13,10 +13,10 @@ class Stag::Operation::Synchronize < Stag::Operation::Base
   end
 
   def call
-    filesystem_manifest = Filesystem::GenerateFilesystemManifest.call(@options)
-    virtual_manifest    = Filesystem::GenerateVirtualManifest.call(@options)
-    delta               = Filesystem::GenerateDelta.call(filesystem_manifest, virtual_manifest)
-    commands            = Filesystem::GenerateCommandOperations.call(@options, delta)
+    filesystem_manifest = Generate::FilesystemManifest.call(@options)
+    virtual_manifest    = Generate::VirtualManifest.call(@options)
+    delta               = Generate::Delta.call(filesystem_manifest, virtual_manifest)
+    commands            = Generate::Commands.call(@options, delta)
 
     commands.each(&.call)
   end

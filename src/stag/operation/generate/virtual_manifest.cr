@@ -1,5 +1,5 @@
 # Generate FilesystemEntries based on the virtual filesystem.
-class Stag::Operation::Filesystem::GenerateVirtualManifest < Stag::Operation::Base
+class Stag::Operation::Generate::VirtualManifest < Stag::Operation::Base
 
   @options : Options
   @tags    = [] of Model::Tag
