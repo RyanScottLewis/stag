@@ -20,8 +20,10 @@ class Stag::Application
     # TODO:
     filesystem_manifest = Operation::Filesystem::GenerateFilesystemManifest.call(@options)
     virtual_manifest    = Operation::Filesystem::GenerateVirtualManifest.call(@options)
-    delta               = Operation::Filesystem::RetrieveDelta.call(filesystem_manifest, virtual_manifest)
-    #commands            = Operation::Filesystem::GenerateCommandOperations.call(delta)
+    delta               = Operation::Filesystem::GenerateDelta.call(filesystem_manifest, virtual_manifest)
+    commands            = Operation::Filesystem::GenerateCommandOperations.call(@options, delta)
+
+    #commands.each(&.call)
   end
 
 end
