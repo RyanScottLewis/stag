@@ -10,7 +10,7 @@ class Stag::Operation::Command::CreateDirectory < Stag::Operation::Command::Base
   end
 
   def report
-    "\e[36m+ DIR:\e[0m %s" % @entry[:path]
+    "\e[36m+ DIR \e[0m %s" % @entry[:path]
   end
 
 end

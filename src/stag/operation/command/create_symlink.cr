@@ -6,11 +6,11 @@ class Stag::Operation::Command::CreateSymlink < Stag::Operation::Command::Base
   end
 
   def command
-    "ln -s '%s' '%s'" % [@entry[:target], @entry[:path]]
+    "ln -s '%s' '%s'" % [@entry[:path], @entry[:target]]
   end
 
   def report
-    "\e[35m+ LINK:\e[0m %s \e[95m→\e[0m \e[35m%s\e[0m" % [@entry[:path], @entry[:target]]
+    "\e[35m+ LINK\e[0m %s \e[95m→\e[0m \e[35m%s\e[0m" % [@entry[:path], @entry[:target]]
   end
 
 end
