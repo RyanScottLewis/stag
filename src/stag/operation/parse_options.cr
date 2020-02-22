@@ -19,7 +19,7 @@ class Stag::Operation::ParseOptions < Stag::Operation::Base
   protected def setup_banner
     # TODO: Magic string - Use like Stag::NAME or something
     @parser.banner = <<-BANNER
-    Usage: stag [COMMAND] [OPTIONS]
+    Usage: stag [ACTION] [OPTIONS]
 
     File\e[4m\e[1ms\e[0mystem \e[4m\e[1mtag\e[0ms.
     Hierarchically tag filesystem entries and generate/synchronize a filesystem hierarchy of directories and symlinks based on the tagged entries.
@@ -27,7 +27,7 @@ class Stag::Operation::ParseOptions < Stag::Operation::Base
     Commands:
         index,   list                    List all tags/sources (default command)
         create,  new                     Create a tag/source
-        read,    view                    Show a tag/source
+        read,    show,   view            Show a tag/source
         update,  edit                    Edit a tag/source
         destroy, delete, remove          Remove a tag/source
 
