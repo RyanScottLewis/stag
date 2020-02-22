@@ -39,11 +39,11 @@ lrwxrwxrwx 1 dg dg 31 Feb 21 19:36 'raspi_project' -> /home/dg/Stuff/raspi_proje
 total 0
 lrwxrwxrwx 1 dg dg 31 Feb 21 19:28 'raspi_project' -> /home/dg/Stuff/raspi_project
 
-./Software:
+./Programming:
 total 4
 drwxr-xr-x 2 dg dg 4096 Feb 21 19:24 Projects
 
-./Software/Projects:
+./Programming/Projects:
 total 0
 lrwxrwxrwx 1 dg dg 29 Feb 21 19:24 'mcu_project' -> /home/dg/Stuff/mcu_project
 ```
