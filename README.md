@@ -3,7 +3,7 @@
 File**s**ystem **tag**s.
 
 Hierarchically tag filesystem entries and generate/synchronize a filesystem hierarchy of directories
-and symlinks based on the entries and tags.
+and symlinks based on the tagged entries.
 
 The difference between the virtual filesystem and actual filesystem is calculated and only the
 changes are applied when synchronizing.
