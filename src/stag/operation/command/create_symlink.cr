@@ -6,7 +6,7 @@ class Stag::Operation::Command::CreateSymlink < Stag::Operation::Command::Base
   end
 
   def command
-    "ln -s '%s' '%s'" % [@entry[:path], @entry[:target]]
+    "ln -s '%s' '%s'" % [@entry[:target], @entry[:path]]
   end
 
   def report
