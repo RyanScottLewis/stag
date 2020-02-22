@@ -23,7 +23,7 @@ class Stag::Application
     delta               = Operation::Filesystem::GenerateDelta.call(filesystem_manifest, virtual_manifest)
     commands            = Operation::Filesystem::GenerateCommandOperations.call(@options, delta)
 
-    #commands.each(&.call)
+    commands.each(&.call)
   end
 
 end

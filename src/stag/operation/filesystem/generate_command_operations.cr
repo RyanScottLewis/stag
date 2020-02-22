@@ -14,7 +14,7 @@ class Stag::Operation::Filesystem::GenerateCommandOperations < Stag::Operation::
     [
       generate_deletion_commands,
       generate_creation_commands
-    ].flatten
+    ].flatten.compact
   end
 
   protected def generate_deletion_commands
