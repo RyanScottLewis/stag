@@ -1,0 +1,37 @@
+class Stag::Operation::Filesystem::GenerateCommandOperations < Stag::Operation::Base
+
+  @options : Options
+  @delta   : FilesystemDelta
+
+  def initialize(@options, @delta)
+  end
+
+  def call
+    generate_commands
+  end
+
+  protected def generate_commands
+    [
+      generate_deletion_commands,
+      generate_creation_commands
+    ].flatten
+  end
+
+  protected def generate_deletion_commands
+    @delta[:deletion].map do |entry|
+      Command::DeleteEntry.new(@options, entry)
+    end
+  end
+
+  protected def generate_creation_commands
+    @delta[:creation].map do |entry|
+      if entry.is_a?(FilesystemDirectory)
+        Command::CreateDirectory.new(@options, entry)
+      elsif entry.is_a?(FilesystemSymlink)
+        Command::CreateSymlink.new(@options, entry)
+      end
+    end
+  end
+
+end
+
