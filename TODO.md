@@ -41,6 +41,10 @@
   ## Remove a tag/source
   $ stag destroy|delete TAG_OR_SOURCE_VIRTUAL_OR_REAL_PATH
   ```
+* CLI options
+  * An option to NOT remove items in the root path when synchronizing.
+    For example if I keep other items in my root path, I don't want those items being removed on the
+    next synchronization.
 
 # BUGS
 
