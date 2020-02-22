@@ -17,13 +17,7 @@ class Stag::Application
     Operation::ProcessOptions.call(@options)
     Operation::SetupDatabase.call(@options)
 
-    # TODO:
-    filesystem_manifest = Operation::Filesystem::GenerateFilesystemManifest.call(@options)
-    virtual_manifest    = Operation::Filesystem::GenerateVirtualManifest.call(@options)
-    delta               = Operation::Filesystem::GenerateDelta.call(filesystem_manifest, virtual_manifest)
-    commands            = Operation::Filesystem::GenerateCommandOperations.call(@options, delta)
-
-    commands.each(&.call)
+    Operation::Filesystem::Synchronize.call(@options)
   end
 
 end
