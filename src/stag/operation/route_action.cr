@@ -2,16 +2,17 @@
 class Stag::Operation::RouteAction < Stag::Operation::Base
 
   @arguments : Arguments
+  @options   : Options
   @router    : Router
 
-  def initialize(@arguments, @router)
+  def initialize(@arguments, @options, @router)
     setup_router
   end
 
   def call
     action_argument = @arguments.shift?
 
-    @router.route(action_argument)
+    @router.route(action_argument, @options)
   end
 
   protected def setup_router
