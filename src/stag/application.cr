@@ -16,9 +16,10 @@ class Stag::Application
 
     Operation::ParseOptions.call(@arguments, @options, @option_parser)
     Operation::ProcessOptions.call(@options)
+
     Operation::SetupDatabase.call(@options)
 
-    Operation::Filesystem::Synchronize.call(@options)
+    Operation::Synchronize.call(@options)
   end
 
 end
