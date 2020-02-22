@@ -1,3 +1,5 @@
+# The main point of entry.
+
 # Standard libraries
 require "option_parser"
 

@@ -1,3 +1,4 @@
+# The application.
 class Stag::Application
 
   include Concern::ClassCallable

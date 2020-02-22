@@ -1,3 +1,4 @@
+# Generate FilesystemEntries based on the virtual filesystem.
 class Stag::Operation::Filesystem::GenerateVirtualManifest < Stag::Operation::Base
 
   @options : Options

@@ -1,3 +1,4 @@
+# Application options.
 class Stag::Options
 
   property help     = false

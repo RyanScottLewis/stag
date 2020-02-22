@@ -1,3 +1,4 @@
+# Delete a filesystem entry based on a FilesystemEntry.
 class Stag::Operation::Command::DeleteEntry < Stag::Operation::Command::Base
 
   @entry : FilesystemEntry

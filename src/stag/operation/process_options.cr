@@ -1,3 +1,4 @@
+# Preprocess arguments - expanding paths and stripping strings.
 class Stag::Operation::ProcessOptions < Stag::Operation::Base
 
   @options : Options

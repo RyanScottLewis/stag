@@ -1,3 +1,4 @@
+# Database repository and adapter.
 module Stag::Repository
 
   extend Crecto::Repo

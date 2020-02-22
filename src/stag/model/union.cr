@@ -1,3 +1,4 @@
+# Join for Source and Tag models.
 class Stag::Model::Union < Crecto::Model
 
   schema "unions" do

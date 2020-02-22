@@ -1,3 +1,4 @@
+# A named filesystem item.
 class Stag::Model::Source < Crecto::Model
 
   schema "sources" do

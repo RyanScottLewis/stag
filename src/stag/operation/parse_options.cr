@@ -1,3 +1,4 @@
+# Parses options from the application's arguments destructively.
 class Stag::Operation::ParseOptions < Stag::Operation::Base
 
   @arguments : Arguments

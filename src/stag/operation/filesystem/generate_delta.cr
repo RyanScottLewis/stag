@@ -1,3 +1,4 @@
+# Generate the differences between the virtual filesystem and actual filesystem.
 class Stag::Operation::Filesystem::GenerateDelta < Stag::Operation::Base
 
   @filesystem_manifest : Array(FilesystemEntry)

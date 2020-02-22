@@ -1,3 +1,4 @@
+# Create a directory based on a FilesystemDirectory.
 class Stag::Operation::Command::CreateDirectory < Stag::Operation::Command::Base
 
   @entry : FilesystemDirectory

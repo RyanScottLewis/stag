@@ -1,3 +1,4 @@
+# Create a symlink based on a FilesystemSymlink.
 class Stag::Operation::Command::CreateSymlink < Stag::Operation::Command::Base
 
   @entry : FilesystemSymlink

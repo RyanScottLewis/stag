@@ -1,3 +1,4 @@
+# Setup the database based on the application options and database tables (creating them if needed.)
 class Stag::Operation::SetupDatabase < Stag::Operation::Base
 
   @options : Options

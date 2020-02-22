@@ -1,3 +1,4 @@
+# A hierarchical tag.
 class Stag::Model::Tag < Crecto::Model
 
   schema "tags" do
