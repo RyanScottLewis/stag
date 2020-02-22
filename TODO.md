@@ -51,4 +51,6 @@
 * Orphan sources (without tags) should get created at the top-level in `@options.root`.
   * This is because the virtual filesystem discovers sources **through** tags, instead of gathering
     tags through sources. Technically, both should be retrieved at the same time.
+* Root path and database dirname directories should be automatically created
+  * If root path exists and it's not a directory, raise an error
 
