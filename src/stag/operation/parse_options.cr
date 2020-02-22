@@ -17,7 +17,22 @@ class Stag::Operation::ParseOptions < Stag::Operation::Base
   end
 
   protected def setup_banner
-    @parser.banner = "Usage: stag [OPTIONS]" # TODO: Magic string - Use like Stag::NAME or something
+    # TODO: Magic string - Use like Stag::NAME or something
+    @parser.banner = <<-BANNER
+    Usage: stag [COMMAND] [OPTIONS]
+
+    File\e[4m\e[1ms\e[0mystem \e[4m\e[1mtag\e[0ms.
+    Hierarchically tag filesystem entries and generate/synchronize a filesystem hierarchy of directories and symlinks based on the tagged entries.
+
+    Commands:
+        index,   list                    List all tags/sources (default command)
+        create,  new                     Create a tag/source
+        read,    view                    Show a tag/source
+        update,  edit                    Edit a tag/source
+        destroy, delete, remove          Remove a tag/source
+
+    Options:
+    BANNER
   end
 
   protected def setup_options
@@ -31,6 +46,7 @@ class Stag::Operation::ParseOptions < Stag::Operation::Base
   protected def setup_invalid_option_handler
     @parser.invalid_option do |flag| # TODO: Just warn
       STDERR.puts "ERROR: #{flag} is not a valid option."
+      STDERR.puts
       STDERR.puts @parser
       exit(1)
     end
