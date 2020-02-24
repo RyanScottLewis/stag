@@ -12,3 +12,7 @@ shards:
     github: crystal-lang/crystal-sqlite3
     version: 0.14.0
 
+  tablo:
+    github: hutou/tablo
+    version: 0.9.3
+

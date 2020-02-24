@@ -13,6 +13,8 @@ dependencies:
     github: crystal-lang/crystal-sqlite3
   crecto:
     github: Crecto/crecto
+  tablo:
+    github: hutou/tablo
 
 crystal: 0.32.1
 
