@@ -14,6 +14,8 @@ module Stag::Concern::ClassCallable
 
   end
 
+  # TODO: Make NOT abstract since most classes which use this module are abstract,
+  # forcing them to define empty #call methods.
   abstract def call
 
 end
