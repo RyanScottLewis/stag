@@ -19,6 +19,8 @@ require "./stag/router"
 require "./stag/repository"
 require "./stag/model/**"
 
+require "./stag/formatter/**"
+
 require "./stag/operation/**"
 
 require "./stag/action/**"
