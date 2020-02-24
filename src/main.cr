@@ -6,6 +6,7 @@ require "option_parser"
 # Shard libraries
 require "sqlite3"
 require "crecto"
+require "tablo"
 
 # Internal
 require "./stag"
