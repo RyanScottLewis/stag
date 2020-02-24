@@ -12,7 +12,7 @@ class Stag::Operation::SetupDatabase < Stag::Operation::Base
     open_database do |db|
       create_sources_table(db)
       create_tags_table(db)
-      create_unions_table(db)
+      create_source_tags_table(db)
     end
   end
 
@@ -51,9 +51,9 @@ class Stag::Operation::SetupDatabase < Stag::Operation::Base
     SQL
   end
 
-  protected def create_unions_table(db)
+  protected def create_source_tags_table(db)
     db.exec <<-SQL
-      CREATE TABLE IF NOT EXISTS unions (
+      CREATE TABLE IF NOT EXISTS source_tags (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         source_id INTEGER NOT NULL,
         tag_id INTEGER NOT NULL

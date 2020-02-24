@@ -5,8 +5,8 @@ class Stag::Model::Source < Crecto::Model
     field :name, String
     field :path, String # File system path # TODO: Index
 
-    has_many :unions, Union
-    has_many :tags,   Tag, through: :unions
+    has_many :source_tags, SourceTag
+    has_many :tags,        Tag, through: :source_tags
   end
 
   validate_required :name

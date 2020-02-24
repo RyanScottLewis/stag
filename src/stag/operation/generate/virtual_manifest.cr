@@ -13,7 +13,7 @@ class Stag::Operation::Generate::VirtualManifest < Stag::Operation::Base
   end
 
   protected def retrieve_tags
-    query = Query.where(level: 0)#.preload([:unions, :sources, :children])
+    query = Query.where(level: 0)
     @tags = Repository.all(Model::Tag, query)
   end
 
@@ -37,7 +37,7 @@ class Stag::Operation::Generate::VirtualManifest < Stag::Operation::Base
 
   # TODO: Figure out preloading because this defeats the purpose of associations...
   protected def retrieve_sources(tag)
-    query = Query.join(:unions).where("unions.tag_id = ?", tag.id)
+    query = Query.join(:source_tags).where("source_tags.tag_id = ?", tag.id)
     Repository.all(Model::Source, query)
   end
 

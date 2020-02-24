@@ -6,8 +6,8 @@ class Stag::Model::Tag < Crecto::Model
     field :path,      String # Tag hierarchy path # TODO: Index
     field :level,     Int32
 
-    has_many :unions,  Union
-    has_many :sources, Source, through: :unions
+    has_many :source_tags, SourceTag
+    has_many :sources,     Source, through: :source_tags
 
     belongs_to :parent, Tag, foreign_key: :parent_id
     has_many :children, Tag, foreign_key: :parent_id
