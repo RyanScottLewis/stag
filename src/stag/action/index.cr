@@ -6,6 +6,7 @@ class Stag::Action::Index < Stag::Action::Base
     sources = Repository.all(Model::Source, Query.preload(:source_tags))
 
     # TODO: This works but it should have *just worked* with Query.preload(:tags)
+    # Also, it's not optimized by any stretch of the imagination
     sources.each do |source|
       query = Query.preload(:source_tags)
       source.tags = source.source_tags.map do |source_tag|
