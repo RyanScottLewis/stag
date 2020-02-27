@@ -44,26 +44,13 @@ class Stag::Formatter::Index::Table < Stag::Formatter::Base
   end
 
   protected def generate_table(data)
-    # TODO: Can't Tablo auto-size columns?
-    longest_name = longest_row_element(data, 0)
-    longest_path = longest_row_element(data, 1)
-    longest_tag  = longest_row_element(data, 2)
-    longest_fs   = longest_row_element(data, 3)
-
-    Tablo::Table.new(data) do |t|
-      t.add_column("Name", width: longest_name) { |n| n[0] }
-      t.add_column("Path", width: longest_path) { |n| n[1] }
-      t.add_column("Tags", width: longest_tag)  { |n| n[2] }
-      t.add_column("VFS",  width: longest_fs)   { |n| n[3] }
+    table = Tablo::Table.new(data) do |t|
+      t.add_column("Name") { |n| n[0] }
+      t.add_column("Path") { |n| n[1] }
+      t.add_column("Tags") { |n| n[2] }
+      t.add_column("VFS")  { |n| n[3] }
     end
-  end
-
-  protected def longest_row_element(data, index)
-    column = data.map(&.[index])
-
-    column.map do |element|
-      element.lines.map(&.size).max?
-    end.compact.max
+    table.shrinkwrap!
   end
 
 end
