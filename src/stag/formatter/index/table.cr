@@ -10,16 +10,7 @@ class Stag::Formatter::Index::Table < Stag::Formatter::Base
     data  = generate_table_data
     table = generate_table(data)
 
-    output = String.build do |output|
-      table.each_with_index do |row, i|
-        output << table.horizontal_rule(Tablo::TLine::Mid) if i > 0 && (i % 3) != 0 && table.style =~ /ML/i
-        output << "\n"
-        output << row
-        output << "\n"
-      end
-      output << table.horizontal_rule(Tablo::TLine::Bot) if table.style =~ /BL/i
-      output << "\n"
-    end
+    print_table(table)
   end
 
   protected def generate_table_data
@@ -51,6 +42,19 @@ class Stag::Formatter::Index::Table < Stag::Formatter::Base
       t.add_column("VFS")  { |n| n[3] }
     end
     table.shrinkwrap!
+  end
+
+  protected def print_table(table)
+    output = String.build do |output|
+      table.each_with_index do |row, i|
+        output << table.horizontal_rule(Tablo::TLine::Mid) if i > 0 && (i % 3) != 0 && table.style =~ /ML/i
+        output << "\n"
+        output << row
+        output << "\n"
+      end
+      output << table.horizontal_rule(Tablo::TLine::Bot) if table.style =~ /BL/i
+      output << "\n"
+    end
   end
 
 end
