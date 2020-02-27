@@ -1,17 +1,16 @@
 class Stag::Formatter::Index::Table < Stag::Formatter::Base
 
-  @global_options : Options::Global
   @action_options : Options::Index
   @sources        : Array(Model::Source)
 
-  def initialize(@global_options, @action_options, @sources)
+  def initialize(@action_options, @sources)
   end
 
   def call
     data  = generate_table_data
     table = generate_table(data)
 
-    print_table(table)
+    generate_output(table)
   end
 
   protected def generate_table_data
@@ -22,7 +21,7 @@ class Stag::Formatter::Index::Table < Stag::Formatter::Base
       virtual_hierarchy = [] of String
       unless tag_paths.empty?
         virtual_hierarchy = tag_paths.map do |tag_path|
-          File.join(@global_options.root, tag_path, source.name!)
+          File.join("", tag_path, source.name!)
         end
       end
 
@@ -57,7 +56,7 @@ class Stag::Formatter::Index::Table < Stag::Formatter::Base
     end.shrinkwrap!
   end
 
-  protected def print_table(table)
+  protected def generate_output(table)
     output = String.build do |output|
       table.each_with_index do |row, i|
         output << table.horizontal_rule(Tablo::TLine::Mid) if i > 0 && (i % 3) != 0 && table.style =~ /ML/i
