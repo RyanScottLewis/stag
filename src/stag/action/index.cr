@@ -16,7 +16,9 @@ class Stag::Action::Index < Stag::Action::Base
   protected def retrieve_sources
     @sources = Repository.all(Model::Source, Query.preload(:source_tags))
 
-    # TODO: This works but it should have *just worked* with Query.preload(:tags)
+    # TODO: This works but it should have *just worked* with:
+    #     @sources = Repository.all(Model::Source, Query.preload(:tags))
+    # Until that's figured out, move this into a concern as #load_source_tags
     @sources.each do |source|
       source_tag_ids = source.source_tags.map(&.tag_id)
 

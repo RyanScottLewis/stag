@@ -1,3 +1,4 @@
+# TODO: Rename @options to @global_options
 abstract class Stag::Operation::ParseOptions::Base < Stag::Operation::Base
 
   @arguments : Arguments

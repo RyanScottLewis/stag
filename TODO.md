@@ -29,9 +29,6 @@
   $ stag index --help
   $ stag --help index
 
-  ## Show all tags
-  $ stag [list|index]
-
   ## Create a tag/source
   ## Name is assumed to be the current filename if not given with `--name` or  `-n`.
   ## Tags are found or created if not found recursively
