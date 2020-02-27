@@ -22,6 +22,13 @@
       * Example: `--config '/etc/xdg/stag/config.yml;my-config.yml'`
 * CLI commands:
   ```sh
+  ## Show help
+  $ stag help
+  $ stag --help
+  $ stag help index
+  $ stag index --help
+  $ stag --help index
+
   ## Show all tags
   $ stag [list|index]
 
@@ -40,6 +47,9 @@
 
   ## Remove a tag/source
   $ stag destroy|delete TAG_OR_SOURCE_VIRTUAL_OR_REAL_PATH
+
+  ## Synchronize VFS with FS
+  $ stag synchronize|sync
   ```
 * CLI options
   * An option to NOT remove items in the root path when synchronizing.
