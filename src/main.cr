@@ -13,6 +13,7 @@ require "./stag"
 
 require "./stag/concern/**"
 require "./stag/options/**"
+require "./stag/option_parser/**"
 
 require "./stag/router"
 require "./stag/repository"
@@ -21,6 +22,8 @@ require "./stag/model/**"
 require "./stag/formatter/**"
 require "./stag/operation/**"
 require "./stag/action/**"
+
+require "./stag/interface/**"
 
 require "./stag/application"
 

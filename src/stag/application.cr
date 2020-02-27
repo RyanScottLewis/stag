@@ -7,17 +7,17 @@ class Stag::Application
 
   def initialize(@arguments)
     @options = Options::Global.new
-    @router  = Router.new
   end
 
+  getter arguments
+  getter options
+
   def call
-    Crecto::DbLogger.set_handler(STDOUT) # TODO: DEBUG option?
+    {% unless flag?(:release) %}
+      Crecto::DbLogger.set_handler(STDOUT)
+    {% end %}
 
-    Operation::ParseOptions::Global.call(@arguments, @options)
-    Operation::SetupDatabase.call(@options)
-    Operation::RouteAction.call(@arguments, @options, @router)
-
-    #Operation::Synchronize.call(@options) # TODO: Only if needed
+    Interface::CLI.call(self)
   end
 
 end
