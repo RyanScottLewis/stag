@@ -15,7 +15,7 @@ class Stag::Router
     route
   end
 
-  def route(action_name : String?, options : Options)
+  def route(action_name : String?, arguments : Arguments, options : Options)
     route = if action_name.nil?
       @default_route
     else
@@ -25,7 +25,7 @@ class Stag::Router
     if route.nil?
       raise "Unknown route" # TODO: Just return nil orrr?
     else
-      route[:to].call(options)
+      route[:to].call(arguments, options)
     end
   end
 

@@ -12,7 +12,7 @@ class Stag::Operation::RouteAction < Stag::Operation::Base
   def call
     action_argument = @arguments.shift?
 
-    @router.route(action_argument, @options)
+    @router.route(action_argument, @arguments, @options)
   end
 
   protected def setup_router
