@@ -5,10 +5,11 @@ class Stag::Router
   @routes = [] of Route
 
   def initialize
+    yield self
   end
 
-  def map(action : Symbol, to : Action::Base.class, aliases = [] of String, default = false)
-    route = Route.new(action: action, to: to, aliases: aliases, default: default)
+  def map(aliases : Array(String), action : Action::Base.class, default = false)
+    route = Route.new(action: action, aliases: aliases, default: default)
     @routes << route
     @default_route = route if default
 
@@ -27,10 +28,10 @@ class Stag::Router
     route_for?(action_name).not_nil!
   end
 
-  def route(action_name : String?, arguments : Arguments, options : Options::Global)
+  def route(action_name : String?, cli : Interface::CLI)
     route = route_for(action_name)
 
-    route[:to].call(arguments, options)
+    route[:action].call(cli)
   end
 
 end

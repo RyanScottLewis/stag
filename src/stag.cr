@@ -19,7 +19,7 @@ module Stag
   #alias UpdateTagOptions    = NamedTuple(name: String?, path: String?)
   #alias CommandOptions      = CreateOptions | UpdateSourceOptions | UpdateTagOptions
 
-  alias Route = NamedTuple(action: Symbol, to: Action::Base.class, aliases: Array(String), default: Bool)
+  alias Route = NamedTuple(action: Action::Base.class, aliases: Array(String), default: Bool)
 
 end
 
