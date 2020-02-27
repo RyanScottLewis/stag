@@ -8,10 +8,12 @@ class Stag::Action::Index < Stag::Action::Base
     # TODO: This works but it should have *just worked* with Query.preload(:tags)
     # Also, it's not optimized by any stretch of the imagination
     sources.each do |source|
-      query = Query.preload(:source_tags)
-      source.tags = source.source_tags.map do |source_tag|
-        Repository.get(Model::Tag, source_tag.tag_id)
-      end.compact
+      source_tag_ids = source.source_tags.map(&.tag_id)
+
+      unless source_tag_ids.empty?
+        query       = Query.where(id: source_tag_ids)
+        source.tags = Repository.all(Model::Tag, query)
+      end
     end
 
     puts Formatter::Index::Table.call(sources)
