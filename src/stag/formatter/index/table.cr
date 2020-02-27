@@ -24,10 +24,13 @@ class Stag::Formatter::Index::Table < Stag::Formatter::Base
 
   protected def generate_table_data
     @sources.map do |source|
+      tags = source.tags?
+      tags = tags.nil? ? "" : tags.map(&.path).join("\n")
+
       [
         source.name!,
         source.path!,
-        source.tags.map(&.path).join("\n")
+        tags
       ]
     end
   end
@@ -36,7 +39,8 @@ class Stag::Formatter::Index::Table < Stag::Formatter::Base
     # TODO: Can't Tablo auto-size columns?
     longest_name = @sources.map(&.name!.size).max
     longest_path = @sources.map(&.path!.size).max
-    longest_tag  = @sources.map(&.tags.map(&.path!.size)).flatten.max
+    #longest_tag  = @sources.map(&.tags.map(&.path!.size)).flatten.max
+    longest_tag  = @sources.map(&.tags?).compact.flatten.map(&.path!.size).max
 
     Tablo::Table.new(data) do |t|
       t.add_column("Name", width: longest_name) { |n| n[0] }
