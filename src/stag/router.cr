@@ -15,7 +15,7 @@ class Stag::Router
     route
   end
 
-  def route(action_name : String?, arguments : Arguments, options : Options)
+  def route(action_name : String?, arguments : Arguments, options : Options::Global)
     route = if action_name.nil?
       @default_route
     else

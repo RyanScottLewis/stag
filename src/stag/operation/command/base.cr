@@ -3,7 +3,7 @@ abstract class Stag::Operation::Command::Base < Stag::Operation::Base
   abstract def command
   abstract def report
 
-  @options : Options
+  @options : Options::Global
 
   def initialize(@options)
   end

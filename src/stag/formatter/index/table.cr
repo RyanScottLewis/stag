@@ -1,6 +1,6 @@
 class Stag::Formatter::Index::Table < Stag::Formatter::Base
 
-  @options : Options
+  @options : Options::Global
   @sources : Array(Model::Source)
 
   def initialize(@options, @sources)

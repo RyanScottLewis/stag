@@ -2,7 +2,7 @@
 class Stag::Operation::ParseOptions < Stag::Operation::Base
 
   @arguments : Arguments
-  @options   : Options
+  @options   : Options::Global
   @parser    : OptionParser
 
   def initialize(@arguments, @options, @parser)

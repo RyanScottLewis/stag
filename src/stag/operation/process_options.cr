@@ -1,7 +1,7 @@
 # Preprocess arguments - expanding paths and stripping strings.
 class Stag::Operation::ProcessOptions < Stag::Operation::Base
 
-  @options : Options
+  @options : Options::Global
 
   def initialize(@options)
   end

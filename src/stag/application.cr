@@ -7,7 +7,7 @@ class Stag::Application
 
   def initialize(@arguments)
     @option_parser = OptionParser.new
-    @options       = Options.new
+    @options       = Options::Global.new
     @router        = Router.new
   end
 

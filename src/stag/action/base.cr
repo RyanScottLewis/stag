@@ -3,7 +3,7 @@ abstract class Stag::Action::Base
   include Concern::ClassCallable
 
   @arguments : Arguments
-  @options   : Options
+  @options   : Options::Global
 
   def initialize(@arguments, @options)
   end

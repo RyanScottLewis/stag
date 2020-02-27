@@ -1,7 +1,7 @@
 # Generate FilesystemEntries based on the actual filesystem.
 class Stag::Operation::Generate::FilesystemManifest < Stag::Operation::Base
 
-  @options : Options
+  @options : Options::Global
 
   def initialize(@options)
   end

@@ -2,7 +2,7 @@
 class Stag::Operation::RouteAction < Stag::Operation::Base
 
   @arguments : Arguments
-  @options   : Options
+  @options   : Options::Global
   @router    : Router
 
   def initialize(@arguments, @options, @router)

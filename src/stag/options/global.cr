@@ -1,5 +1,5 @@
 # Application options.
-class Stag::Options
+class Stag::Options::Global < Stag::Options::Base
 
   property help     = false
   property verbose  = false
