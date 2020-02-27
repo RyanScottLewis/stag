@@ -2,10 +2,9 @@ abstract class Stag::Action::Base
 
   include Concern::ClassCallable
 
-  @arguments : Arguments
-  @options   : Options::Global
+  @cli : Interface::CLI
 
-  def initialize(@arguments, @options)
+  def initialize(@cli)
   end
 
   def call; end
