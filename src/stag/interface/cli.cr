@@ -5,7 +5,15 @@ class Stag::Interface::CLI < Stag::Interface::Base
 
   def initialize(application)
     @arguments = application.arguments
-    @router    = Router.new
+
+    @router = Router.new do |router|
+      router.map(%w[help],                  action: Action::Help)
+      router.map(%w[index list],            action: Action::Index, default: true)
+      router.map(%w[create new],            action: Action::Create)
+      router.map(%w[read show view],        action: Action::Read)
+      router.map(%w[update edit],           action: Action::Update)
+      router.map(%w[destroy delete remove], action: Action::Destroy)
+    end
 
     @options = {
       global: application.options,
@@ -27,7 +35,7 @@ class Stag::Interface::CLI < Stag::Interface::Base
     # TODO: Operation::LoadOptions.call(@options)
     OptionParser::Global.call(self)
     Operation::SetupDatabase.call(@options[:global])
-    #Operation::RouteAction.call(self)
+    Operation::RouteAction.call(self)
 
     #Operation::Synchronize.call(@options) # TODO: Only if needed
   end
