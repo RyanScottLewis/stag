@@ -15,18 +15,22 @@ class Stag::Router
     route
   end
 
-  def route(action_name : String?, arguments : Arguments, options : Options::Global)
-    route = if action_name.nil?
+  def route_for?(action_name : String?)
+    if action_name.nil?
       @default_route
     else
       @routes.select { |route| route[:aliases].includes?(action_name) }[0]?
     end
+  end
 
-    if route.nil?
-      raise "Unknown route" # TODO: Just return nil orrr?
-    else
-      route[:to].call(arguments, options)
-    end
+  def route_for(action_name : String?)
+    route_for?(action_name).not_nil!
+  end
+
+  def route(action_name : String?, arguments : Arguments, options : Options::Global)
+    route = route_for(action_name)
+
+    route[:to].call(arguments, options)
   end
 
 end
