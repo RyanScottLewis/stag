@@ -22,7 +22,7 @@ class Stag::Action::Index < Stag::Action::Base
   end
 
   protected def print_table(sources)
-    puts Formatter::Index::Table.call(sources)
+    puts Formatter::Index::Table.call(@options, sources)
   end
 
 end
