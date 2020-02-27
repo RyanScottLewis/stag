@@ -1,21 +1,10 @@
-# Parses options from the application's arguments destructively.
+# Global options parser.
 class Stag::Operation::ParseOptions::Global < Stag::Operation::ParseOptions::Base
 
-  @options : Options::Global
+  type Options::Global
 
-  def initialize(@arguments, @options)
-    super(@arguments)
-  end
-
-  def call
-    setup_banner
-    setup_options
-    super
-  end
-
-  protected def setup_banner
-    # TODO: Magic string - Use like Stag::NAME or something
-    @parser.banner = <<-BANNER
+  banner do
+    <<-STR
     Usage: stag [ACTION] [OPTIONS]
 
     File\e[4m\e[1ms\e[0mystem \e[4m\e[1mtag\e[0ms.
@@ -29,7 +18,7 @@ class Stag::Operation::ParseOptions::Global < Stag::Operation::ParseOptions::Bas
         destroy, delete, remove          Remove a tag/source
 
     Options:
-    BANNER
+    STR
   end
 
   protected def setup_options
@@ -37,7 +26,7 @@ class Stag::Operation::ParseOptions::Global < Stag::Operation::ParseOptions::Bas
     @parser.on("-v", "--verbose",        "Run verbosely")                           {         @options.verbose  = true }
     @parser.on("-D", "--dry",            "Run without making changes")              {         @options.dry      = true }
     @parser.on("-r", "--root VALUE",     "Root path for generating tag filesystem") { |value| @options.root     = expand_path(value) }
-    @parser.on("-d", "--database VALUE", "Path to the SQLite databsae")             { |value| @options.database = expand_path(value) }
+    @parser.on("-d", "--database VALUE", "Path to the SQLite database")             { |value| @options.database = expand_path(value) }
   end
 
 end
