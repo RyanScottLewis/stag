@@ -16,6 +16,7 @@ class Stag::Operation::RouteAction < Stag::Operation::Base
   end
 
   protected def setup_router
+    @router.map(action: :help,    aliases: %w[help],                  to: Action::Help)
     @router.map(action: :index,   aliases: %w[index list],            to: Action::Index, default: true)
     @router.map(action: :create,  aliases: %w[create new],            to: Action::Create)
     @router.map(action: :read,    aliases: %w[read show view],        to: Action::Read)
