@@ -12,8 +12,7 @@ class Stag::Application
   end
 
   def call
-    # TODO: DEBUG
-    #Crecto::DbLogger.set_handler(STDOUT)
+    Crecto::DbLogger.set_handler(STDOUT) # TODO: DEBUG option?
 
     Operation::ParseOptions.call(@arguments, @options, @option_parser)
     Operation::ProcessOptions.call(@options) # TODO: Is this genuinely needed? Move functionality over to ParseOptions
