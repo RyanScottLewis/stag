@@ -1,20 +1,25 @@
-# TODO: Rename @options to @global_options
-abstract class Stag::Operation::ParseOptions::Base < Stag::Operation::Base
+# Command-line options parser.
+abstract class Stag::OptionParser::Base
 
-  @arguments : Arguments
-  #@options   : Options::Base # NOTE: Intentionlly commented out - but still unsure
-  @parser    : OptionParser
+  include Concern::ClassCallable
 
   macro banner(&block)
     @@banner = {{block.body}}
   end
 
-  macro type(class_type)
-    @options : {{class_type}}
-  end
+  macro inherited
+    @@class_key = {{@type.stringify.split("::").last.underscore.id.symbolize}}
 
-  def initialize(@arguments, @options)
-    @parser = OptionParser.new
+    @cli       : Interface::CLI
+    @arguments : Arguments
+    @parser    : ::OptionParser
+    @options   : Options::{{@type.stringify.split("::").last.id}}
+
+    def initialize(@cli)
+      @arguments = @cli.arguments
+      @options   = @cli.options[@@class_key].as(Options::{{@type.stringify.split("::").last.id}})
+      @parser    = @cli.option_parsers[@@class_key]
+    end
   end
 
   def call
@@ -29,7 +34,6 @@ abstract class Stag::Operation::ParseOptions::Base < Stag::Operation::Base
   end
 
   protected def setup_banner
-    # TODO: Magic string - Use like Stag::NAME or something
     @parser.banner = @@banner
   end
 

@@ -1,7 +1,5 @@
 # Index action options parser.
-class Stag::Operation::ParseOptions::Index < Stag::Operation::ParseOptions::Base
-
-  type Options::Index
+class Stag::OptionParser::Index < Stag::OptionParser::Base
 
   banner do
     <<-STR

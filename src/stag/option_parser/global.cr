@@ -1,7 +1,5 @@
 # Global options parser.
-class Stag::Operation::ParseOptions::Global < Stag::Operation::ParseOptions::Base
-
-  type Options::Global
+class Stag::OptionParser::Global < Stag::OptionParser::Base
 
   banner do
     <<-STR
