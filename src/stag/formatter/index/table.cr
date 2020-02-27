@@ -1,9 +1,10 @@
 class Stag::Formatter::Index::Table < Stag::Formatter::Base
 
-  @options : Options::Global
-  @sources : Array(Model::Source)
+  @global_options : Options::Global
+  @action_options : Options::Index
+  @sources        : Array(Model::Source)
 
-  def initialize(@options, @sources)
+  def initialize(@global_options, @action_options, @sources)
   end
 
   def call
@@ -21,27 +22,39 @@ class Stag::Formatter::Index::Table < Stag::Formatter::Base
       virtual_hierarchy = [] of String
       unless tag_paths.empty?
         virtual_hierarchy = tag_paths.map do |tag_path|
-          File.join(@options.root, tag_path, source.name!)
+          File.join(@global_options.root, tag_path, source.name!)
         end
       end
 
-      [
-        source.name!,
-        source.path!,
-        tag_paths.join("\n"),
-        virtual_hierarchy.join("\n")
-      ]
+      row = [] of String
+      columns = @action_options.columns
+      columns = Options::Index::COLUMNS.clone if columns.empty?
+
+      columns.each do |column|
+        contents = case column
+        when "name" then source.name!
+        when "path" then source.path!
+        when "tags" then tag_paths.join("\n")
+        when "vfs"  then virtual_hierarchy.join("\n")
+        end
+
+        row << contents unless contents.nil?
+      end
+
+      row
     end
   end
 
   protected def generate_table(data)
-    table = Tablo::Table.new(data) do |t|
-      t.add_column("Name") { |n| n[0] }
-      t.add_column("Path") { |n| n[1] }
-      t.add_column("Tags") { |n| n[2] }
-      t.add_column("VFS")  { |n| n[3] }
-    end
-    table.shrinkwrap!
+    Tablo::Table.new(data, connectors: Tablo::CONNECTORS_SINGLE_DOUBLE_MIXED) do |table|
+      columns = @action_options.columns
+      columns = Options::Index::COLUMNS.clone if columns.empty?
+
+      columns.each_with_index do |column, index|
+        header = column == "vfs" ? column.upcase : column.capitalize
+        table.add_column(header) { |row| row[index] }
+      end
+    end.shrinkwrap!
   end
 
   protected def print_table(table)

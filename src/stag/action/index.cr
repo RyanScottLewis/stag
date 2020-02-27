@@ -1,10 +1,16 @@
 class Stag::Action::Index < Stag::Action::Base
 
-  @sources = [] of Model::Source
+  @sources        = [] of Model::Source
+  @action_options = Options::Index.new
 
   def call
+    parse_options
     retrieve_sources
     print_table
+  end
+
+  protected def parse_options
+    Operation::ParseOptions::Index.call(@arguments, @action_options)
   end
 
   protected def retrieve_sources
@@ -22,7 +28,7 @@ class Stag::Action::Index < Stag::Action::Base
   end
 
   protected def print_table
-    puts Formatter::Index::Table.call(@options, @sources)
+    puts Formatter::Index::Table.call(@options, @action_options, @sources)
   end
 
 end
