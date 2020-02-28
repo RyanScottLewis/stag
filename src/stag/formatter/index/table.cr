@@ -13,6 +13,7 @@ class Stag::Formatter::Index::Table < Stag::Formatter::Base
     generate_output(table)
   end
 
+  # TODO: This should be split out into an operation so it can be used in generating HTML tables (for example)
   protected def generate_table_data
     @sources.map do |source|
       tags = source.tags?
