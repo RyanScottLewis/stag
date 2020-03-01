@@ -1,7 +1,7 @@
 class Stag::Interface::CLI < Stag::Interface::Base
 
   @arguments : Arguments
-  @options : NamedTuple(global: Options::Global, index: Options::Index, synchronize: Options::Synchronize)
+  @options : NamedTuple(global: Options::Global, index: Options::Index, read: Options::Read, synchronize: Options::Synchronize)
 
   def initialize(application)
     @arguments = application.arguments
@@ -19,12 +19,14 @@ class Stag::Interface::CLI < Stag::Interface::Base
     @options = {
       global:      application.options,
       index:       Options::Index.new,
+      read:        Options::Read.new,
       synchronize: Options::Synchronize.new,
     }
 
     @option_parsers = {
       global:      OptionParser::Global.new(@arguments, @options[:global]),
       index:       OptionParser::Index.new(@arguments, @options[:index]),
+      read:        OptionParser::Read.new(@arguments, @options[:read]),
       synchronize: OptionParser::Synchronize.new(@arguments, @options[:synchronize]),
     }
 
