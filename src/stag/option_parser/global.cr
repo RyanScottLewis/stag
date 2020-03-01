@@ -19,12 +19,12 @@ class Stag::OptionParser::Global < Stag::OptionParser::Base
     STR
   end
 
-  protected def setup_options
-    @parser.on("-h", "--help",           "Show help")                               {         @options.help     = true }
-    @parser.on("-v", "--verbose",        "Run verbosely")                           {         @options.verbose  = true }
-    @parser.on("-D", "--dry",            "Run without making changes")              {         @options.dry      = true }
-    @parser.on("-r", "--root VALUE",     "Root path for generating tag filesystem") { |value| @options.root     = expand_path(value) }
-    @parser.on("-d", "--database VALUE", "Path to the SQLite database")             { |value| @options.database = expand_path(value) }
+  options do
+    bool :help,     :h, "Show help"
+    bool :verbose,  :v, "Run verbosely"
+    bool :dry,      :D, "Run without making changes"
+    path :root,     :r, "Root path for generating tag filesystem"
+    path :database, :d, "Path to the SQLite database"
   end
 
 end

@@ -11,10 +11,8 @@ class Stag::OptionParser::Index < Stag::OptionParser::Base
     STR
   end
 
-  protected def setup_options
-    @parser.on("-c", "--columns VALUE", "Columns to display") do |value|
-      @options.columns = parse_columns(value)
-    end
+  options do
+    string :columns, :c, "Columns to display", :parse_columns
   end
 
   protected def parse_columns(value)
