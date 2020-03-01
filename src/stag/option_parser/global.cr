@@ -15,6 +15,7 @@ class Stag::OptionParser::Global < Stag::OptionParser::Base
         read,    show,   view            Show a tag/source
         update,  edit                    Edit a tag/source
         destroy, delete, remove          Remove a tag/source
+        sync, synchronize                Synchronize with the filesystem
 
     Options:
     STR

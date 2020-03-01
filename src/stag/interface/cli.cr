@@ -1,7 +1,7 @@
 class Stag::Interface::CLI < Stag::Interface::Base
 
   @arguments : Arguments
-  @options : NamedTuple(global: Options::Global, index: Options::Index)
+  @options : NamedTuple(global: Options::Global, index: Options::Index, synchronize: Options::Synchronize)
 
   def initialize(application)
     @arguments = application.arguments
@@ -13,16 +13,19 @@ class Stag::Interface::CLI < Stag::Interface::Base
       router.map(%w[read show view],        action: Action::Read)
       router.map(%w[update edit],           action: Action::Update)
       router.map(%w[destroy delete remove], action: Action::Destroy)
+      router.map(%w[sync synchronize],      action: Action::Synchronize)
     end
 
     @options = {
-      global: application.options,
-      index:  Options::Index.new,
+      global:      application.options,
+      index:       Options::Index.new,
+      synchronize: Options::Synchronize.new,
     }
 
     @option_parsers = {
-      global: OptionParser::Global.new(@arguments, @options[:global]),
-      index:  OptionParser::Index.new(@arguments, @options[:index]),
+      global:      OptionParser::Global.new(@arguments, @options[:global]),
+      index:       OptionParser::Index.new(@arguments, @options[:index]),
+      synchronize: OptionParser::Synchronize.new(@arguments, @options[:synchronize]),
     }
   end
 

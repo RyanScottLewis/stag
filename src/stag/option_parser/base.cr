@@ -60,6 +60,10 @@ abstract class Stag::OptionParser::Base
     @parser.banner = @@banner
   end
 
+  protected def setup_options
+    # NOTE: Intentional no-op
+  end
+
   protected def setup_invalid_option_handler
     @parser.invalid_option {} # NOTE: Intentional no-op
   end
