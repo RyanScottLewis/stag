@@ -17,6 +17,8 @@ class Stag::Application
       Crecto::DbLogger.set_handler(STDOUT)
     {% end %}
 
+    Colorize.on_tty_only!
+
     Interface::CLI.call(self)
   end
 

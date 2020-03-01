@@ -11,7 +11,11 @@ class Stag::Operation::Command::CreateDirectory < Stag::Operation::Command::Base
   end
 
   def report
-    "\e[36m+ DIR \e[0m %s" % @entry[:path]
+    [
+      "+".colorize(:green),
+      "DIR".colorize(:light_blue),
+      @entry[:path]
+    ].join(" ")
   end
 
 end

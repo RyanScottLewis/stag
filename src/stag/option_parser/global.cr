@@ -5,10 +5,10 @@ class Stag::OptionParser::Global < Stag::OptionParser::Base
     <<-STR
     Usage: stag [ACTION] [OPTIONS]
 
-    File\e[4m\e[1ms\e[0mystem \e[4m\e[1mtag\e[0ms.
+    File#{"s".colorize.bold}ystem #{"tag".colorize.bold}s.
     Hierarchically tag filesystem entries and generate/synchronize a filesystem hierarchy of directories and symlinks based on the tagged entries.
 
-    Commands:
+    Actions:
         help [ACTION]                    Display help
         index,   list                    List all tags/sources (default command)
         create,  new                     Create a tag/source

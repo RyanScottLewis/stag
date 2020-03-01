@@ -11,9 +11,13 @@ class Stag::Operation::Command::DeleteEntry < Stag::Operation::Command::Base
   end
 
   def report
-    name = @entry.is_a?(FilesystemDirectory) ? "DIR " : "LINK"
+    name = @entry.is_a?(FilesystemDirectory) ? "DIR ".colorize(:light_blue) : "LINK".colorize(:light_magenta)
 
-    "\e[35m- %s\e[0m %s\e[95m" % [name, @entry[:path]]
+    [
+      "-".colorize(:red),
+      name,
+      @entry[:path]
+    ].join(" ")
   end
 
 end

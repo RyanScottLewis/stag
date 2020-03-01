@@ -11,8 +11,8 @@ abstract class Stag::Operation::Command::Base < Stag::Operation::Base
   def call
     puts report
 
-    message = "  \e[33mCMD\e[0m  \e[90m%s\e[0m" % command
-    message += " \e[33m[DRY]\e[90m" if @options.dry
+    message = ["  CMD".colorize(:yellow), command.colorize(:dark_gray)].join(" ")
+    message += " [DRY]".colorize(:yellow).to_s if @options.dry
 
     puts message
     system command unless @options.dry
