@@ -1,7 +1,5 @@
 class Stag::Formatter::TextTable < Stag::Formatter::Base
 
-  @data : Array(Array(String))
-
   def initialize(@data, @borders = true)
   end
 

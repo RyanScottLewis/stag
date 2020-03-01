@@ -65,11 +65,36 @@ class Stag::Action::Read < Stag::Action::Base
       source_tag_ids     = record.source_tags.map(&.tag_id)
       record.tags        = Repository.all(Model::Tag, Query.where(id: source_tag_ids))
 
-      puts Formatter::Index::Table.call(@cli.options[:index], [record])
-    when Model::Tag
-      puts "GOT A TAG HERE, PEOPLE! Got a TAAAG"
+      # TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO 
+      # TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO 
+      # TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO 
+      tags = record.tags?
+      tags = tags.nil? ? [] of String : tags.map(&.path).compact
 
-      p entry
+      virtual_hierarchy = [] of String
+      if tags.empty?
+        virtual_hierarchy << File.join("/", record.name!)
+      else
+        virtual_hierarchy += tags.map do |tag_path|
+          File.join("/", tag_path, record.name!)
+        end
+      end
+
+      data = [
+        ["ID", "Name", "Path", "Tags", "VFS"],
+        [record.id.to_s, record.name!, record.path!, tags.join("\n"), virtual_hierarchy.join("\n")]
+      ]
+
+      puts Formatter::TextTable.call(data)
+    when Model::Tag
+      record = entry[:record].as(Model::Tag)
+
+      data = [
+        ["ID", "Name", "Path"],
+        [record.id.to_s, record.name!, record.path!]
+      ]
+
+      puts Formatter::TextTable.call(data)
     end
   end
 
