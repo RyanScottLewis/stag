@@ -1,3 +1,4 @@
+# TODO: Rename to Source::Table
 class Stag::Formatter::Index::Table < Stag::Formatter::Base
 
   @action_options : Options::Index

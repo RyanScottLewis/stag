@@ -3,6 +3,7 @@
 # Standard libraries
 require "option_parser"
 require "colorize"
+require "levenshtein"
 
 # Shard libraries
 require "sqlite3"
