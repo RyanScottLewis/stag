@@ -9,6 +9,7 @@ class Stag::OptionParser::Global < Stag::OptionParser::Base
     Hierarchically tag filesystem entries and generate/synchronize a filesystem hierarchy of directories and symlinks based on the tagged entries.
 
     Commands:
+        help [ACTION]                    Display help
         index,   list                    List all tags/sources (default command)
         create,  new                     Create a tag/source
         read,    show,   view            Show a tag/source
@@ -20,7 +21,7 @@ class Stag::OptionParser::Global < Stag::OptionParser::Base
   end
 
   options do
-    bool :help,     :h, "Show help"
+    bool :help,     :h, "Display help"
     bool :verbose,  :v, "Run verbosely"
     bool :dry,      :D, "Run without making changes"
     path :root,     :r, "Root path for generating tag filesystem"
