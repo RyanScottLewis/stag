@@ -20,9 +20,11 @@ class Stag::Formatter::Index::Table < Stag::Formatter::Base
       tag_paths = tags.nil? ? [] of String : tags.map(&.path).compact
 
       virtual_hierarchy = [] of String
-      unless tag_paths.empty?
-        virtual_hierarchy = tag_paths.map do |tag_path|
-          File.join("", tag_path, source.name!)
+      if tag_paths.empty?
+        virtual_hierarchy << File.join("/", source.name!)
+      else
+        virtual_hierarchy += tag_paths.map do |tag_path|
+          File.join("/", tag_path, source.name!)
         end
       end
 

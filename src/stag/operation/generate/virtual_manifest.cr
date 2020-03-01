@@ -3,12 +3,14 @@ class Stag::Operation::Generate::VirtualManifest < Stag::Operation::Base
 
   @options : Options::Global
   @tags    = [] of Model::Tag
+  @sources = [] of Model::Source
 
   def initialize(@options)
   end
 
   def call
     retrieve_tags
+    retrieve_top_level_sources
     generate_entries
   end
 
@@ -17,9 +19,18 @@ class Stag::Operation::Generate::VirtualManifest < Stag::Operation::Base
     @tags = Repository.all(Model::Tag, query)
   end
 
+  # TODO: This is dumb. Should traverse sources, then get tags.
+  protected def retrieve_top_level_sources
+    # SELECT sources.* FROM sources WHERE id NOT IN (SELECT source_tags.id FROM source_tags)
+    query    = Query.where("id NOT IN (SELECT source_tags.id FROM source_tags)")
+    @sources = Repository.all(Model::Source, query)
+  end
+
   protected def generate_entries
     @tags.map do |tag|
       generate_tag_entry(tag)
+    end.flatten + @sources.map do |source|
+      { path: File.join(@options.root, source.name!), target: source.path! }
     end.flatten
   end
 
