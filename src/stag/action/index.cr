@@ -7,7 +7,7 @@ class Stag::Action::Index < Stag::Action::Base
   end
 
   protected def parse_options
-    OptionParser::Index.call(@cli)
+    @cli.option_parsers[:index].call
   end
 
   protected def retrieve_sources

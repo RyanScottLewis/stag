@@ -1,36 +1,29 @@
 # Command-line options parser.
 abstract class Stag::OptionParser::Base
 
-  include Concern::ClassCallable
-
   macro banner(&block)
     @@banner = {{block.body}}
   end
 
   macro inherited
-    @@class_key = {{@type.stringify.split("::").last.underscore.id.symbolize}}
+    @options : Options::{{@type.stringify.split("::").last.id}}
+  end
 
-    @cli       : Interface::CLI
-    @arguments : Arguments
-    @parser    : ::OptionParser
-    @options   : Options::{{@type.stringify.split("::").last.id}}
+  @arguments : Arguments
+  @parser    = ::OptionParser.new
 
-    def initialize(@cli)
-      @arguments = @cli.arguments
-      @options   = @cli.options[@@class_key].as(Options::{{@type.stringify.split("::").last.id}})
-      @parser    = @cli.option_parsers[@@class_key]
-    end
+  def initialize(@arguments, @options)
+    setup_banner
+    setup_options
+    setup_invalid_option_handler
   end
 
   def call
-    setup_options
-    setup_banner
-    setup_invalid_option_handler
-    parse_options
+    @parser.parse(@arguments)
   end
 
-  def help
-    @parser.to_s
+  def to_s(io : IO)
+    @parser.to_s(io)
   end
 
   protected def setup_banner
@@ -38,13 +31,7 @@ abstract class Stag::OptionParser::Base
   end
 
   protected def setup_invalid_option_handler
-    @parser.invalid_option do |flag|
-      # NOTE: Intentional no-op
-    end
-  end
-
-  protected def parse_options
-    @parser.parse(@arguments)
+    @parser.invalid_option {} # NOTE: Intentional no-op
   end
 
   # Helpers # TODO: Concern?

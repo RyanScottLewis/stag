@@ -21,8 +21,8 @@ class Stag::Interface::CLI < Stag::Interface::Base
     }
 
     @option_parsers = {
-      global: ::OptionParser.new,
-      index:  ::OptionParser.new,
+      global: OptionParser::Global.new(@arguments, @options[:global]),
+      index:  OptionParser::Index.new(@arguments, @options[:index]),
     }
   end
 
@@ -33,7 +33,10 @@ class Stag::Interface::CLI < Stag::Interface::Base
 
   def call
     # TODO: Operation::LoadOptions.call(@options)
-    OptionParser::Global.call(self)
+
+    #OptionParser::Global.call(self)
+    @option_parsers[:global].call
+
     Operation::SetupDatabase.call(@options[:global])
     Operation::RouteAction.call(self)
 
