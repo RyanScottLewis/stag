@@ -27,16 +27,16 @@ $ stag create raspi_project --name "Raspberry Pi Project" --tags Electronics/Pro
 
 
 $ tree ~/.local/share/stag/fs                                                                                                                                                                                                                             Insert zsh 1 master 2020-02-29 10:44 PM
-/home/ryguy/.local/share/stag/fs
+/home/dg/.local/share/stag/fs
 ├── Electronics
 │   └── Projects
-│       ├── MCU Project -> /home/ryguy/Stuff/mcu_project
-│       └── Raspberry Pi Project -> /home/ryguy/Stuff/raspi_project
+│       ├── MCU Project -> /home/dg/Stuff/mcu_project
+│       └── Raspberry Pi Project -> /home/dg/Stuff/raspi_project
 ├── Linux
-│   └── Raspberry Pi Project -> /home/ryguy/Stuff/raspi_project
+│   └── Raspberry Pi Project -> /home/dg/Stuff/raspi_project
 └── Programming
     └── Projects
-        └── MCU Project -> /home/ryguy/Stuff/mcu_project
+        └── MCU Project -> /home/dg/Stuff/mcu_project
 
 5 directories, 5 files
 ```
