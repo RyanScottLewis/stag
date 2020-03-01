@@ -65,9 +65,6 @@ class Stag::Action::Read < Stag::Action::Base
       source_tag_ids     = record.source_tags.map(&.tag_id)
       record.tags        = Repository.all(Model::Tag, Query.where(id: source_tag_ids))
 
-      # TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO 
-      # TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO 
-      # TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO 
       tags = record.tags?
       tags = tags.nil? ? [] of String : tags.map(&.path).compact
 
