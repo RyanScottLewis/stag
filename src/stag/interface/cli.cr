@@ -36,8 +36,13 @@ class Stag::Interface::CLI < Stag::Interface::Base
 
     @option_parsers[:global].call
 
-    Operation::SetupDatabase.call(@options[:global])
-    Operation::RouteAction.call(self)
+    if @options[:global].help
+      Action::Help.call(self)
+    else
+      Operation::SetupDatabase.call(@options[:global])
+      Operation::RouteAction.call(self)
+    end
+
 
     #Operation::Synchronize.call(@options) # TODO: Only if needed
   end
