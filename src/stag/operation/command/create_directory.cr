@@ -11,11 +11,14 @@ class Stag::Operation::Command::CreateDirectory < Stag::Operation::Command::Base
   end
 
   def report
+    dry = @options.dry ? "[DRY]".colorize(:yellow).to_s : nil
+
     [
+      "DIR".ljust(4).colorize(:light_blue),
       "+".colorize(:green),
-      "DIR".colorize(:light_blue),
-      @entry[:path]
-    ].join(" ")
+      dry,
+      @entry[:path],
+    ].compact.join(" ")
   end
 
 end

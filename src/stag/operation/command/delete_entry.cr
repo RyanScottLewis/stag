@@ -11,11 +11,11 @@ class Stag::Operation::Command::DeleteEntry < Stag::Operation::Command::Base
   end
 
   def report
-    name = @entry.is_a?(FilesystemDirectory) ? "DIR ".colorize(:light_blue) : "LINK".colorize(:light_magenta)
+    name = @entry.is_a?(FilesystemDirectory) ? "DIR".ljust(4).colorize(:light_blue) : "LINK".ljust(4).colorize(:light_magenta)
 
     [
-      "-".colorize(:red),
       name,
+      "-".colorize(:red),
       @entry[:path]
     ].join(" ")
   end

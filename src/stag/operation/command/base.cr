@@ -9,12 +9,15 @@ abstract class Stag::Operation::Command::Base < Stag::Operation::Base
   end
 
   def call
-    puts report
+    puts report if @options.verbose >= Verbose::STANDARD
 
-    message = ["  CMD".colorize(:yellow), command.colorize(:dark_gray)].join(" ")
-    message += " [DRY]".colorize(:yellow).to_s if @options.dry
+    if @options.verbose >= Verbose::EXTRA
+      puts [
+        "CMD".ljust(4).colorize(:yellow),
+        command.colorize(:dark_gray)
+      ].join(" ")
+    end
 
-    puts message
     system command unless @options.dry
   end
 

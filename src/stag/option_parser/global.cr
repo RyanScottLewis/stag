@@ -22,11 +22,21 @@ class Stag::OptionParser::Global < Stag::OptionParser::Base
   end
 
   options do
-    bool :help,     :h, "Display help"
-    bool :verbose,  :v, "Run verbosely"
-    bool :dry,      :D, "Run without making changes"
-    path :root,     :r, "Root path for generating tag filesystem"
-    path :database, :d, "Path to the SQLite database"
+    bool  :help,     :h, "Display help"
+    value(:verbose,  :v, "Run verbosely (0-3)") { Verbose.new(value.to_i) }
+    bool  :dry,      :D, "Run without making changes"
+    path  :root,     :r, "Root path for generating tag filesystem"
+    path  :database, :d, "Path to the SQLite database"
+  end
+
+  protected def setup_missing_option_handler
+    @parser.missing_option do |option|
+      case option
+      when "-v", "--verbose" then @options.verbose = Verbose::STANDARD
+      else
+        raise ::OptionParser::MissingOption.new(option)
+      end
+    end
   end
 
 end

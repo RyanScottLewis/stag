@@ -5,9 +5,21 @@ abstract class Stag::OptionParser::Base
     @@banner = {{block.body}}
   end
 
+  macro value(name, short, description, &block)
+    @parser.on("-{{short.id}}", "--{{name.id}} VALUE", {{description}}) do |value|
+      @options.{{name.id}} = {{block.body}}
+    end
+  end
+
   macro bool(name, short, description)
     @parser.on("-{{short.id}}", "--{{name.id}}", {{description}}) do
       @options.{{name.id}} = true
+    end
+  end
+
+  macro int(name, short, description)
+    @parser.on("-{{short.id}}", "--{{name.id}} VALUE", {{description}}) do |value|
+      @options.{{name.id}} = parse_int(value)
     end
   end
 
@@ -46,6 +58,7 @@ abstract class Stag::OptionParser::Base
     setup_banner
     setup_options
     setup_invalid_option_handler
+    setup_missing_option_handler
   end
 
   def call
@@ -68,6 +81,10 @@ abstract class Stag::OptionParser::Base
     @parser.invalid_option {} # NOTE: Intentional no-op
   end
 
+  protected def setup_missing_option_handler
+    # NOTE: Intentional no-op
+  end
+
   # Helpers # TODO: Concern?
 
   protected def parse_path(value)
@@ -76,6 +93,10 @@ abstract class Stag::OptionParser::Base
 
   protected def parse_array(value)
     value.split(",").map(&.strip)
+  end
+
+  protected def parse_int(value)
+    value.to_i
   end
 
 end

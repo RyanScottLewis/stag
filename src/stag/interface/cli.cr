@@ -27,6 +27,12 @@ class Stag::Interface::CLI < Stag::Interface::Base
       index:       OptionParser::Index.new(@arguments, @options[:index]),
       synchronize: OptionParser::Synchronize.new(@arguments, @options[:synchronize]),
     }
+
+    Crecto::DbLogger.set_handler(STDOUT)
+    Crecto::DbLogger.options = @options[:global]
+
+    Colorize.on_tty_only!
+
   end
 
   getter arguments

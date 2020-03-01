@@ -21,5 +21,12 @@ module Stag
 
   alias Route = NamedTuple(action: Action::Base.class, aliases: Array(String), default: Bool)
 
+  enum Verbose
+    QUIET
+    STANDARD
+    EXTRA
+    DEBUG
+  end
+
 end
 

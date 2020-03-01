@@ -28,16 +28,20 @@ require "./stag/interface/**"
 
 require "./stag/application"
 
+module Crecto::DbLogger
 
-def Crecto::DbLogger.log(string, elapsed) : Nil
-  @@log_handler.as(IO) << [
-    "  DB  ".colorize(:blue),
-    ("%7.7s" % elapsed_text(elapsed)).colorize(:dark_gray),
-    string,
-    "\n"
-  ].join(" ")
+  class_property! options : Stag::Options::Global
+
+  def self.log(string, elapsed) : Nil
+    @@log_handler.as(IO) << [
+      "DB".ljust(4).colorize(:blue),
+      elapsed_text(elapsed).ljust(7).colorize(:dark_gray),
+      string,
+      "\n"
+    ].join(" ") if options.verbose >= Stag::Verbose::DEBUG
+  end
+
 end
-
 
 # Init
 Stag::Application.call(ARGV)
