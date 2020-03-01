@@ -56,7 +56,6 @@
 * Move/rename classes:
   * Rename/move OptionParser module to Interface::CLI::Parser
   * Move Action to Interface::CLI::Action
-* Use `tree` output in README instead of `ls -R`
 
 # BUGS
 
