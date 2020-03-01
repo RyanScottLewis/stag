@@ -4,6 +4,9 @@
 require "option_parser"
 require "colorize"
 require "levenshtein"
+require "csv"
+require "yaml"
+require "json"
 
 # Shard libraries
 require "sqlite3"

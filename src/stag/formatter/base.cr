@@ -1,8 +1,15 @@
 abstract class Stag::Formatter::Base
 
-  include Concern::ClassCallable
+  def self.call(data, *arguments)
+    new(data, *arguments).call
+  end
 
-  def call; end
+  @data : Array(Array(String))
+
+  def initialize(@data)
+  end
+
+  abstract def call
 
 end
 
