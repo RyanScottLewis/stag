@@ -3,7 +3,8 @@ class Stag::OptionParser::Index < Stag::OptionParser::Base
 
   banner do
     <<-STR
-    Usage: stag (index | list) [OPTIONS]
+    Usage: stag index [OPTIONS]
+           stag list [OPTIONS]
 
     Display a list of sources.
 
