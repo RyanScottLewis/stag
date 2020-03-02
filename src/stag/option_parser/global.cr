@@ -22,11 +22,12 @@ class Stag::OptionParser::Global < Stag::OptionParser::Base
   end
 
   options do
-    bool  :help,     :h, "Display help"
-    value(:verbose,  :v, "Run verbosely (0-3)") { Verbose.new(value.to_i) }
-    bool  :dry,      :D, "Run without making changes"
-    path  :root,     :r, "Root path for generating tag filesystem"
-    path  :database, :d, "Path to the SQLite database"
+    bool   :help,     :h, "Display help"
+    value( :verbose,  :v, "Run verbosely (0-3)") { Verbose.new(value.to_i) }
+    bool   :dry,      :D, "Run without making changes"
+    path   :root,     :r, "Root path for generating tag filesystem"
+    path   :database, :d, "Path to the SQLite database"
+    string :format,   :f, "Output format (#{Operation::FormatData::FORMATTERS.keys.join(",")})" # TODO: Formatter.all...
   end
 
   protected def setup_missing_option_handler

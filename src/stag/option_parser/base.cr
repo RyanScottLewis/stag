@@ -31,13 +31,19 @@ abstract class Stag::OptionParser::Base
 
   macro array(name, short, description)
     @parser.on("-{{short.id}}", "--{{name.id}} VALUE", {{description}}) do |value|
-      @options.columns = parse_array(value)
+      @options.{{name.id}} = parse_array(value)
+    end
+  end
+
+  macro string(name, short, description)
+    @parser.on("-{{short.id}}", "--{{name.id}} VALUE", {{description}}) do |value|
+      @options.{{name.id}} = value.to_s
     end
   end
 
   macro string(name, short, description, converter)
     @parser.on("-{{short.id}}", "--{{name.id}} VALUE", {{description}}) do |value|
-      @options.columns = {{converter.id}}(value)
+      @options.{{name.id}} = {{converter.id}}(value.to_s)
     end
   end
 
