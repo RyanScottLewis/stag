@@ -4,6 +4,10 @@ abstract class Stag::Formatter::Base
     new(data, *arguments).call
   end
 
+  macro inherited
+    Formatter.register({{@type.stringify}}, {{@type}})
+  end
+
   @data : Formatter::Data
 
   def initialize(@data)

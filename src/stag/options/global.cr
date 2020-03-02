@@ -6,7 +6,7 @@ class Stag::Options::Global < Stag::Options::Base
   property dry      = false
   property root     = "#{ENV["HOME"]}/.local/share/stag/fs"
   property database = "#{ENV["HOME"]}/.local/share/stag/database.db"
-  property format   : String = Operation::FormatData::FORMATTERS.keys.first.not_nil! # TODO: Formatter.all...
+  property format   : String = Formatter.all.keys.first.not_nil!
 
 end
 
