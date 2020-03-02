@@ -38,7 +38,7 @@ $ tree ~/.local/share/stag/fs                                                   
     └── Projects
         └── MCU Project -> /home/dg/Stuff/mcu_project
 
-5 directories, 5 files
+5 directories, 4 files
 ```
 
 **Powered by**
