@@ -8,6 +8,12 @@ and symlinks based on the tagged entries.
 The difference between the virtual filesystem and actual filesystem is calculated and only the
 changes are applied when synchronizing.
 
+**Powered by**
+
+[Crystal](https://crystal-lang.org/) | [Crecto](https://www.crecto.com/)
+--- | --- 
+![Crystal](https://raw.githubusercontent.com/RyanScottLewis/stag/master/docs/Crystal.png) | ![Crecto](https://raw.githubusercontent.com/RyanScottLewis/stag/master/docs/Crecto.png)
+
 ## Example
 
 > Note: **The CLI is not complete yet and this example is purely hypothetical until this notice is
@@ -40,12 +46,6 @@ $ tree ~/.local/share/stag/fs                                                   
 
 5 directories, 4 files
 ```
-
-**Powered by**
-
-[Crystal](https://crystal-lang.org/) | [Crecto](https://www.crecto.com/)
---- | --- 
-![Crystal](https://raw.githubusercontent.com/RyanScottLewis/stag/master/docs/Crystal.png) | ![Crecto](https://raw.githubusercontent.com/RyanScottLewis/stag/master/docs/Crecto.png)
 
 ## Installation
 
