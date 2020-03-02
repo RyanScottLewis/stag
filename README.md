@@ -41,6 +41,12 @@ $ tree ~/.local/share/stag/fs                                                   
 5 directories, 5 files
 ```
 
+**Powered by**
+
+[Crystal](https://crystal-lang.org/) | [Crecto](https://www.crecto.com/)
+--- | --- 
+![Crystal](https://raw.githubusercontent.com/RyanScottLewis/stag/master/docs/Crystal.png) | ![Crecto](https://raw.githubusercontent.com/RyanScottLewis/stag/master/docs/Crecto.png)
+
 ## Installation
 
 TODO: Write installation instructions here
