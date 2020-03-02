@@ -82,7 +82,7 @@ class Stag::Action::Read < Stag::Action::Base
         [record.id.to_s, record.name!, record.path!, tags.join("\n"), virtual_hierarchy.join("\n")]
       ]
 
-      puts Formatter::TextTable.call(data)
+      puts Operation::FormatData.call(data, "text", Formatter::TextTable::Params.new)
     when Model::Tag
       record = entry[:record].as(Model::Tag)
 
@@ -91,7 +91,7 @@ class Stag::Action::Read < Stag::Action::Base
         [record.id.to_s, record.name!, record.path!]
       ]
 
-      puts Formatter::TextTable.call(data)
+      puts Operation::FormatData.call(data, "text", Formatter::TextTable::Params.new)
     end
   end
 

@@ -4,7 +4,7 @@ abstract class Stag::Formatter::Base
     new(data, *arguments).call
   end
 
-  @data : Array(Array(String))
+  @data : Formatter::Data
 
   def initialize(@data)
   end
