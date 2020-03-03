@@ -1,4 +1,4 @@
-class Stag::Formatter::TextTable < Stag::Formatter::Base
+class Stag::Formatter::Table < Stag::Formatter::Base
 
   class Params < Formatter::Params
 

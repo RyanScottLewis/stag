@@ -4,7 +4,7 @@ class Stag::Formatter::CSV < Stag::Formatter::Base
 
     property separator
 
-    def initialize(@separator = ",")
+    def initialize(@separator = ',')
     end
 
   end

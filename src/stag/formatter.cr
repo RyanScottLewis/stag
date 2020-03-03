@@ -6,6 +6,14 @@ module Stag::Formatter
     @@all[name] = formatter_class
   end
 
+  def self.[](name : String)
+    @@all[name]
+  end
+
+  def self.[]?(name : String)
+    @@all[name]?
+  end
+
   alias Data = Array(Array(String))
 
 end

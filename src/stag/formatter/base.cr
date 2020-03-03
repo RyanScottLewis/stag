@@ -5,7 +5,7 @@ abstract class Stag::Formatter::Base
   end
 
   macro inherited
-    Formatter.register({{@type.stringify}}, {{@type}})
+    Formatter.register({{@type.stringify.split("::").last.underscore}}, {{@type}})
   end
 
   @data : Formatter::Data

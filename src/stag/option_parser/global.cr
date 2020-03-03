@@ -27,7 +27,7 @@ class Stag::OptionParser::Global < Stag::OptionParser::Base
     bool   :dry,      :D, "Run without making changes"
     path   :root,     :r, "Root path for generating tag filesystem"
     path   :database, :d, "Path to the SQLite database"
-    string :format,   :f, "Output format (#{Formatter.all.keys.join(",")})"
+    string :format,   :f, "Output format (#{Formatter.all.keys.sort.join(",")})"
   end
 
   protected def setup_missing_option_handler

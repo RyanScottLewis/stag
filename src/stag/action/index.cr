@@ -53,11 +53,18 @@ class Stag::Action::Index < Stag::Action::Base
   end
 
   protected def print_table(data)
-    puts Formatter::TextTable.call(data)
+    #puts Operation::FormatData.call(data, "table", Formatter::Table::Params.new)
+    format = @cli.options[:global].format
+    formatter = Formatter[format]
+    if formatter.nil?
+      puts "Error: Unknown formatter" # TODO: Some sort of better error handling
+    else
+      puts formatter.call(data)
+    end
   end
 
   protected def format_header(value)
-    value == "vfs" || "id" ? value.upcase : value.capitalize
+    ["vfs", "id"].includes?(value) ? value.upcase : value.capitalize
   end
 
 end
