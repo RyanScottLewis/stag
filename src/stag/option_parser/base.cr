@@ -5,9 +5,17 @@ abstract class Stag::OptionParser::Base
     @@banner = {{block.body}}
   end
 
+  # TODO: This is the worst stuff. Just the worst
+
   macro value(name, short, description, &block)
     @parser.on("-{{short.id}}", "--{{name.id}} VALUE", {{description}}) do |value|
       @options.{{name.id}} = {{block.body}}
+    end
+  end
+
+  macro bool(name, description)
+    @parser.on("--{{name.id}}", {{description}}) do
+      @options.{{name.id}} = true
     end
   end
 
@@ -32,6 +40,19 @@ abstract class Stag::OptionParser::Base
   macro array(name, short, description)
     @parser.on("-{{short.id}}", "--{{name.id}} VALUE", {{description}}) do |value|
       @options.{{name.id}} = parse_array(value)
+    end
+  end
+
+  macro char(name, description)
+    @parser.on("--{{name.id}} VALUE", {{description}}) do |value|
+      char = value.chars.first?
+      @options.{{name.id}} = char unless char.nil?
+    end
+  end
+
+  macro string(name, description)
+    @parser.on("--{{name.id}} VALUE", {{description}}) do |value|
+      @options.{{name.id}} = value.to_s
     end
   end
 

@@ -53,13 +53,14 @@ class Stag::Action::Index < Stag::Action::Base
   end
 
   protected def print_table(data)
-    #puts Operation::FormatData.call(data, "table", Formatter::Table::Params.new)
-    format = @cli.options[:global].format
+    format    = @cli.options[:global].format.downcase
     formatter = Formatter[format]
+
     if formatter.nil?
       puts "Error: Unknown formatter" # TODO: Some sort of better error handling
+      exit 1
     else
-      puts formatter.call(data)
+      puts formatter.call(data, @cli.options[:global])
     end
   end
 

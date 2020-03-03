@@ -1,20 +1,8 @@
 class Stag::Formatter::JSON < Stag::Formatter::Base
 
-  class Params < Formatter::Params
-
-    property pretty
-
-    def initialize(@pretty = true)
-    end
-
-  end
-
-  def initialize(@data, @params = Params.new)
-  end
-
   def call
     headers = @data[0]
-    indent  = @params.pretty ? "  " : nil
+    indent  = @options.json_pretty ? "  " : nil
 
     ::JSON.build(indent) do |builder|
       builder.array do

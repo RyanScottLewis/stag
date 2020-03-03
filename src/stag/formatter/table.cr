@@ -1,20 +1,8 @@
 class Stag::Formatter::Table < Stag::Formatter::Base
 
-  class Params < Formatter::Params
-
-    def initialize(@borders = true)
-    end
-
-    property borders
-
-  end
-
-  def initialize(@data, @params = Params.new)
-  end
-
   def call
     headers = @data[0]
-    style = @params.borders ? Tablo::STYLE_ALL_BORDERS : ""
+    style   = @options.table_borders ? Tablo::STYLE_ALL_BORDERS : ""
 
     table = Tablo::Table.new(@data[1..-1], connectors: Tablo::CONNECTORS_SINGLE_DOUBLE_MIXED, style: style) do |table|
       headers.each_with_index do |header, index|

@@ -1,13 +1,5 @@
 class Stag::Formatter::YAML < Stag::Formatter::Base
 
-  # TODO: Completely unneeded but needs to be here due to Formatter::Base's inherited hook
-  class Params < Formatter::Params
-  end
-
-  # TODO: Samesies
-  def initialize(@data, @params = Params.new)
-  end
-
   def call
     headers = @data[0]
 

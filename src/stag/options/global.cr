@@ -8,5 +8,9 @@ class Stag::Options::Global < Stag::Options::Base
   property database = "#{ENV["HOME"]}/.local/share/stag/database.db"
   property format   : String = "table" # TODO: Use this? Formatter.all.keys.first.not_nil!
 
+  property table_borders = false
+  property csv_separator = ','
+  property json_pretty   = false
+
 end
 
