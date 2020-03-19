@@ -17,7 +17,7 @@ class Stag::OptionParser::Global < Stag::OptionParser::Base
         destroy, delete, remove          Remove a tag/source
         sync,    synchronize             Synchronize with the filesystem
 
-    Options:
+    Global Options:
     STR
   end
 

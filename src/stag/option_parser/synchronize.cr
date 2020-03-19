@@ -7,9 +7,6 @@ class Stag::OptionParser::Synchronize < Stag::OptionParser::Base
 
     Synchronize the virtual filesystem consisting of hierarchical tags and sources with the filesystem using tag directories and source symlinks.
     STR
-
-    #Options:
-    #STR
   end
 
   #options do

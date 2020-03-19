@@ -8,7 +8,7 @@ class Stag::OptionParser::Index < Stag::OptionParser::Base
 
     Display a list of sources.
 
-    Options:
+    Action Options:
     STR
   end
 
