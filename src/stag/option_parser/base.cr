@@ -9,62 +9,62 @@ abstract class Stag::OptionParser::Base
 
   macro value(name, short, description, &block)
     @parser.on("-{{short.id}}", "--{{name.id}} VALUE", {{description}}) do |value|
-      @options.{{name.id}} = {{block.body}}
+      @options.{{name.tr("-", "_").id}} = {{block.body}}
     end
   end
 
   macro bool(name, description)
     @parser.on("--{{name.id}}", {{description}}) do
-      @options.{{name.id}} = true
+      @options.{{name.tr("-", "_").id}} = true
     end
   end
 
   macro bool(name, short, description)
     @parser.on("-{{short.id}}", "--{{name.id}}", {{description}}) do
-      @options.{{name.id}} = true
+      @options.{{name.tr("-", "_").id}} = true
     end
   end
 
   macro int(name, short, description)
     @parser.on("-{{short.id}}", "--{{name.id}} VALUE", {{description}}) do |value|
-      @options.{{name.id}} = parse_int(value)
+      @options.{{name.tr("-", "_").id}} = parse_int(value)
     end
   end
 
   macro path(name, short, description)
     @parser.on("-{{short.id}}", "--{{name.id}} VALUE", {{description}}) do |value|
-      @options.{{name.id}} = parse_path(value)
+      @options.{{name.tr("-", "_").id}} = parse_path(value)
     end
   end
 
   macro array(name, short, description)
     @parser.on("-{{short.id}}", "--{{name.id}} VALUE", {{description}}) do |value|
-      @options.{{name.id}} = parse_array(value)
+      @options.{{name.tr("-", "_").id}} = parse_array(value)
     end
   end
 
   macro char(name, description)
     @parser.on("--{{name.id}} VALUE", {{description}}) do |value|
       char = value.chars.first?
-      @options.{{name.id}} = char unless char.nil?
+      @options.{{name.tr("-", "_").id}} = char unless char.nil?
     end
   end
 
   macro string(name, description)
     @parser.on("--{{name.id}} VALUE", {{description}}) do |value|
-      @options.{{name.id}} = value.to_s
+      @options.{{name.tr("-", "_").id}} = value.to_s
     end
   end
 
   macro string(name, short, description)
     @parser.on("-{{short.id}}", "--{{name.id}} VALUE", {{description}}) do |value|
-      @options.{{name.id}} = value.to_s
+      @options.{{name.tr("-", "_").id}} = value.to_s
     end
   end
 
   macro string(name, short, description, converter)
     @parser.on("-{{short.id}}", "--{{name.id}} VALUE", {{description}}) do |value|
-      @options.{{name.id}} = {{converter.id}}(value.to_s)
+      @options.{{name.tr("-", "_").id}} = {{converter.id}}(value.to_s)
     end
   end
 
