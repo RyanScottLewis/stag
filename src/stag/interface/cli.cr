@@ -1,7 +1,7 @@
 class Stag::Interface::CLI < Stag::Interface::Base
 
   @arguments : Arguments
-  @options : NamedTuple(global: Options::Global, index: Options::Index, read: Options::Read, synchronize: Options::Synchronize)
+  @options   : Options
 
   def initialize(application)
     @arguments = application.arguments
@@ -16,22 +16,17 @@ class Stag::Interface::CLI < Stag::Interface::Base
       router.map(%w[sync synchronize],      action: Action::Synchronize)
     end
 
-    @options = {
-      global:      application.options,
-      index:       Options::Index.new,
-      read:        Options::Read.new,
-      synchronize: Options::Synchronize.new,
-    }
+    @options = application.options
 
     @option_parsers = {
-      global:      OptionParser::Global.new(@arguments, @options[:global]),
-      index:       OptionParser::Index.new(@arguments, @options[:index]),
-      read:        OptionParser::Read.new(@arguments, @options[:read]),
-      synchronize: OptionParser::Synchronize.new(@arguments, @options[:synchronize]),
+      global:      OptionParser::Global.new(@arguments, @options),
+      index:       OptionParser::Index.new(@arguments, @options),
+      read:        OptionParser::Read.new(@arguments, @options),
+      synchronize: OptionParser::Synchronize.new(@arguments, @options),
     }
 
     Crecto::DbLogger.set_handler(STDOUT)
-    Crecto::DbLogger.options = @options[:global]
+    Crecto::DbLogger.options = @options
 
     Colorize.on_tty_only!
 
@@ -47,10 +42,10 @@ class Stag::Interface::CLI < Stag::Interface::Base
 
     @option_parsers[:global].call
 
-    if @options[:global].help
+    if @options.help
       Action::Help.call(self)
     else
-      Operation::SetupDatabase.call(@options[:global])
+      Operation::SetupDatabase.call(@options)
       Operation::RouteAction.call(self)
     end
 

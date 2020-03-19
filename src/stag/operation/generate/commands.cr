@@ -2,7 +2,7 @@
 # differences (delta.)
 class Stag::Operation::Generate::Commands < Stag::Operation::Base
 
-  @options : Options::Global
+  @options : Options
   @delta   : FilesystemDelta
 
   def initialize(@options, @delta)

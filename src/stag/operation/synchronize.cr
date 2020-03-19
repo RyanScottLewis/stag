@@ -7,7 +7,7 @@
 # * Run all commands.
 class Stag::Operation::Synchronize < Stag::Operation::Base
 
-  @options : Options::Global
+  @options : Options
 
   def initialize(@options)
   end

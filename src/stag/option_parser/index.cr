@@ -21,7 +21,7 @@ class Stag::OptionParser::Index < Stag::OptionParser::Base
       .split(",")
       .map(&.strip.downcase)
       .reject(&.empty?)
-      .select { |partial| Options::Index::COLUMNS.includes?(partial) }
+      .select { |partial| Options::COLUMNS.includes?(partial) }
   end
 
 end

@@ -6,10 +6,10 @@ abstract class Stag::Formatter::Base
     Formatter.register({{@type.stringify.split("::").last.underscore}}, {{@type}})
   end
 
-  @data    : Formatter::Data
-  @options : Options::Global
+  @sources : Array(Model::Source)
+  @options : Options
 
-  def initialize(@data, @options)
+  def initialize(@sources, @options)
   end
 
   abstract def call

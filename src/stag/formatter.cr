@@ -14,7 +14,7 @@ module Stag::Formatter
     @@all[name]?
   end
 
-  alias Data = Array(Array(String))
+  alias Data = Array(Model::Source)
 
 end
 

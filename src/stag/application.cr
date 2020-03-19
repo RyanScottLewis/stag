@@ -6,7 +6,7 @@ class Stag::Application
   @arguments : Arguments
 
   def initialize(@arguments)
-    @options = Options::Global.new
+    @options = Options.new
   end
 
   getter arguments

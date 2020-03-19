@@ -74,10 +74,7 @@ abstract class Stag::OptionParser::Base
     end
   end
 
-  macro inherited
-    @options : Options::{{@type.stringify.split("::").last.id}}
-  end
-
+  @options   : Options
   @arguments : Arguments
   @parser    = ::OptionParser.new
 

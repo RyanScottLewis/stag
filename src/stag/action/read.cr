@@ -36,7 +36,7 @@ class Stag::Action::Read < Stag::Action::Base
     closest_tag_by_name    = tag_distances.sort_by(&.[:name]).first
     closest_tag_by_path    = tag_distances.sort_by(&.[:path]).first
 
-    if @cli.options[:global].verbose >= Verbose::DEBUG
+    if @cli.options.verbose >= Verbose::DEBUG
       puts "Closest source by name: %s %s - %d" % [closest_source_by_name[:source].name!, closest_source_by_name[:source].path!, closest_source_by_name[:name]] unless closest_source_by_name.nil?
       puts "Closest source by path: %s %s - %d" % [closest_source_by_path[:source].name!, closest_source_by_path[:source].path!, closest_source_by_path[:path]] unless closest_source_by_path.nil?
       puts "Closest tag by name: %s %s - %d" % [closest_tag_by_name[:tag].name!, closest_tag_by_name[:tag].path!, closest_tag_by_name[:name]] unless closest_tag_by_name.nil?
