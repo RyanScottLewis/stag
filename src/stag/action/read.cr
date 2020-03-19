@@ -60,36 +60,27 @@ class Stag::Action::Read < Stag::Action::Base
   protected def print_entry(entry)
     case entry[:record]
     when Model::Source
-      record             = entry[:record].as(Model::Source)
-      record.source_tags = Repository.all(Model::SourceTag, Query.where(source_id: record.id))
-      source_tag_ids     = record.source_tags.map(&.tag_id)
-      record.tags        = Repository.all(Model::Tag, Query.where(id: source_tag_ids))
+      source             = entry[:record].as(Model::Source)
+      source.source_tags = Repository.all(Model::SourceTag, Query.where(source_id: source.id))
+      source_tag_ids     = source.source_tags.map(&.tag_id)
+      source.tags        = Repository.all(Model::Tag, Query.where(id: source_tag_ids))
 
-      tags = record.tags?
-      tags = tags.nil? ? [] of String : tags.map(&.path).compact
-
-      virtual_hierarchy = [] of String
-      if tags.empty?
-        virtual_hierarchy << File.join("/", record.name!)
-      else
-        virtual_hierarchy += tags.map do |tag_path|
-          File.join("/", tag_path, record.name!)
-        end
-      end
+      tags              = Operation::GenerateTags.call(source)
+      virtual_hierarchy = Operation::GenerateVirtualHierarchy.call(source, tags)
 
       data = [
         ["ID", "Name", "Path", "Tags", "VFS"],
-        [record.id.to_s, record.name!, record.path!, tags.join("\n"), virtual_hierarchy.join("\n")]
+        [source.id.to_s, source.name!, source.path!, tags.join("\n"), virtual_hierarchy.join("\n")]
       ]
 
       # TODO
       #puts Operation::FormatData.call(data, "table", Formatter::Table::Params.new)
     when Model::Tag
-      record = entry[:record].as(Model::Tag)
+      tag = entry[:record].as(Model::Tag)
 
       data = [
         ["ID", "Name", "Path"],
-        [record.id.to_s, record.name!, record.path!]
+        [tag.id.to_s, tag.name!, tag.path!]
       ]
 
       # TODO

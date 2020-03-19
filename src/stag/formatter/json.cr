@@ -1,22 +1,43 @@
 class Stag::Formatter::JSON < Stag::Formatter::Base
 
   def call
-    #headers = @data[0]
-    #indent  = @options.json_pretty ? "  " : nil
+    indent = @options.json_pretty ? "  " : nil
 
-    #::JSON.build(indent) do |builder|
-      #builder.array do
-        #@data[1..-1].each do |row|
-          #builder.object do
-            #headers.each_with_index do |header, index|
-              #builder.field header, row[index]
-            #end
-          #end
-        #end
-      #end
-    #end
+    ::JSON.build(indent) do |builder|
+      builder.array do
+        @sources.each do |source|
+          tags              = Operation::GenerateTags.call(source)
+          virtual_hierarchy = Operation::GenerateVirtualHierarchy.call(source, tags)
 
-    "TODO" # TODO
+          builder.object do
+
+            builder.scalar "id"
+            builder.scalar source.id
+
+            builder.scalar "name"
+            builder.scalar source.name!
+
+            builder.scalar "path"
+            builder.scalar source.path!
+
+            builder.scalar "tags"
+            builder.array do
+              tags.each do |tag|
+                builder.scalar tag
+              end
+            end
+
+            builder.scalar "vfs"
+            builder.array do
+              virtual_hierarchy.each do |path|
+                builder.scalar path
+              end
+            end
+
+          end
+        end
+      end
+    end
   end
 
 end

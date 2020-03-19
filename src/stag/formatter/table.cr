@@ -21,9 +21,7 @@ class Stag::Formatter::Table < Stag::Formatter::Base
     headers = columns.map { |column| format_header(column) }
 
     data = @sources.map do |source|
-      tags = source.tags?
-      tags = tags.nil? ? [] of String : tags.map(&.path).compact
-
+      tags              = Operation::GenerateTags.call(source)
       virtual_hierarchy = Operation::GenerateVirtualHierarchy.call(source, tags)
 
       columns.map do |column|
